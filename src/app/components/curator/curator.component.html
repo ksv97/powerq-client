@@ -6,13 +6,13 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault" [ngbCollapse]="isCollapsed">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Профиль <span class="sr-only">(current)</span></a>
+        <a class="nav-link" [routerLink]="['profile']">Профиль <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Расписание</a>
+        <a class="nav-link" [routerLink]="['schedule']">Расписание</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Дедлайны</a>
+        <a class="nav-link" [routerLink]="['deadlines']">Дедлайны</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Отчеты</a>
@@ -22,4 +22,5 @@
       <button class="btn btn-outline-danger my-2 my-sm-0">Выйти</button>
   </div>
 </nav>
-<app-curator-schedule></app-curator-schedule>
+<router-outlet></router-outlet>
+<!--<app-curator-schedule></app-curator-schedule>-->

@@ -14,6 +14,7 @@ import { CuratorDeadlinesComponent } from './components/curator/pages/curator-de
 import {FormsModule} from "@angular/forms";
 import { AddEventComponent } from './components/curator/add-event/add-event.component';
 import { AddFeedbackComponent } from './components/curator/add-feedback/add-feedback.component';
+import { AppRoutingModule } from './/app-routing.module';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { AddFeedbackComponent } from './components/curator/add-feedback/add-feed
   imports: [
     BrowserModule,
     FormsModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
