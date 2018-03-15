@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="col-lg-12 col-md-12">
+    <button class="btn btn-outline-info" type="button">
+      Добавить мероприятие
+    </button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6 col-sm-12">
+    <div class="row mb-2">
+      <div class="col">
+
+      </div>
+    </div>
+
+    <div id="accordion">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <div class="row mb-0" (click)="isCollapsed1=!isCollapsed1" aria-controls="collapseOne" [attr.aria-expanded]="!isCollapsed1">
+            <div class="col-lg-3">
+              25 марта в 14:00
+            </div>
+            <div class="col-lg-9">Провести кураторский час с группой 1-41</div>
+          </div>
+          <!--<h5 class="mb-0">-->
+          <!--<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">-->
+          <!--Collapsible Group Item #1-->
+          <!--</button>-->
+          <!--</h5>-->
+        </div>
+
+        <div id="collapseOne" class="collapse" [ngbCollapse]="isCollapsed1" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body">
+            Аудитория - Б101. Кураторский час на знакомство. Упражнения доступны по ссылке vk.com/power_q
+
+          </div>
+          <div class="card-footer">
+            <div class="text-center">
+              <button class="btn btn-outline-primary">Добавить отчет</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <div class="row mb-0" (click)="isCollapsed2=!isCollapsed2" aria-controls="collapseOne" [attr.aria-expanded]="!isCollapsed2">
+            <div class="col-lg-3">
+              28 марта в 19:20
+            </div>
+            <div class="col-lg-9">Планерка факультета</div>
+          </div>
+          <!--<h5 class="mb-0">-->
+          <!--<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">-->
+          <!--Collapsible Group Item #1-->
+          <!--</button>-->
+          <!--</h5>-->
+        </div>
+
+        <div id="collapseTwo" class="collapse" [ngbCollapse]="isCollapsed2" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body">
+            Проводим около аудитории Б403. К планерке подготовить отчет о прошедшем кураторском часе на 2 минуты. Принести блокнот, ручку и вкусняшки :)
+
+          </div>
+          <div class="card-footer">
+            <div class="text-center">
+              <button class="btn btn-outline-primary">Добавить отчет</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-lg-6 col-sm-12">
+    <app-add-feedback></app-add-feedback>
+  </div>
+</div>
+

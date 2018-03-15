@@ -1,0 +1,69 @@
+<form>
+  <div class="card">
+    <div class="card-header">
+      <h5>Новый отчет</h5>
+    </div>
+    <div class="card-body" >
+      <div class="row pb-1">
+        <div class="col">
+          <h5 class="text-center">Краткие сведения о мероприятии</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 font-weight-bold col-sm-6">
+          Название:
+        </div>
+        <div class="col-lg-8 col-sm-6">
+          Провести кураторский час с группой 1-41
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 font-weight-bold col-sm-6">
+          Дата и время:
+        </div>
+        <div class="col-lg-8 col-sm-6">
+          25 марта в 14:00
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row pb-1">
+        <div class="col">
+          <h5 class="text-center">Отчет</h5>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="select" class="col-lg-4 col-sm-6 col-form-label">
+          Форма отчета:
+        </label>
+        <div class="col-lg-8 col-sm-6">
+          <select id="select" class="form-control">
+            <option>Отчет о 1 кч</option>
+            <option>Отчет о 2 кч</option>
+            <option>...</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row" *ngFor="let question of questions">
+        <div class="col form-group">
+          <label for="feedback-answer">{{question}}</label>
+          <textarea class="form-control" id="feedback-answer" rows="3"></textarea>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card-footer">
+      <div>
+        <button class="btn btn-success">Сохранить</button>
+        <button class="btn btn-danger">Отмена</button>
+      </div>
+    </div>
+  </div>
+
+
+
+</form>
