@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-auth',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
-  constructor() { }
+  username: string = '';
+  password: string = '';
+
+  constructor(private router: Router { }
 
   ngOnInit() {
+  }
+
+  auth() {
+    switch (this.username) {
+      case "curator": this.router.navigate(['/curator']); break;
+      default: console.warn("Incorrect login");
+    }
   }
 
 }
