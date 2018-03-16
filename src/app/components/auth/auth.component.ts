@@ -11,7 +11,7 @@ export class AuthComponent implements OnInit {
   username: string = '';
   password: string = '';
 
-  constructor(private router: Router { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
