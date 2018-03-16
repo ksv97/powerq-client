@@ -7,6 +7,7 @@ import {NavbarComponent} from "./components/admin/navbar.component";
 import {CuratorScheduleComponent} from "./components/curator/pages/curator-schedule/curator-schedule.component";
 import {CuratorDeadlinesComponent} from "./components/curator/pages/curator-deadlines/curator-deadlines.component";
 import {CuratorProfileComponent} from "./components/curator/pages/curator-profile/curator-profile.component";
+import {MyFeedbacksComponent} from "./components/curator/pages/my-feedbacks/my-feedbacks.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/curator', pathMatch: 'full' },
@@ -15,7 +16,8 @@ const routes: Routes = [
     { path: '', redirectTo: 'profile', pathMatch: "full"},
     {path: 'schedule', component: CuratorScheduleComponent},
     {path: 'deadlines', component: CuratorDeadlinesComponent},
-    {path: 'profile', component: CuratorProfileComponent}
+    {path: 'profile', component: CuratorProfileComponent},
+    {path: 'my-feedbacks', component: MyFeedbacksComponent}
   ]},
   {path: 'elder', component: ElderCuratorComponent},
   {path: 'admin', component: NavbarComponent}

@@ -16,6 +16,8 @@ import { AddEventComponent } from './components/curator/add-event/add-event.comp
 import { AddFeedbackComponent } from './components/curator/add-feedback/add-feedback.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { AddDeadlineComponent } from './components/curator/add-deadline/add-deadline.component';
+import { MyFeedbacksComponent } from './components/curator/pages/my-feedbacks/my-feedbacks.component';
+import { EditFeedbackComponent } from './components/curator/edit-feedback/edit-feedback.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { AddDeadlineComponent } from './components/curator/add-deadline/add-dead
     CuratorDeadlinesComponent,
     AddEventComponent,
     AddFeedbackComponent,
-    AddDeadlineComponent
+    AddDeadlineComponent,
+    MyFeedbacksComponent,
+    EditFeedbackComponent
   ],
   imports: [
     BrowserModule,
