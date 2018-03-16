@@ -15,6 +15,7 @@ import {FormsModule} from "@angular/forms";
 import { AddEventComponent } from './components/curator/add-event/add-event.component';
 import { AddFeedbackComponent } from './components/curator/add-feedback/add-feedback.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { AddDeadlineComponent } from './components/curator/add-deadline/add-deadline.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { AppRoutingModule } from './/app-routing.module';
     CuratorScheduleComponent,
     CuratorDeadlinesComponent,
     AddEventComponent,
-    AddFeedbackComponent
+    AddFeedbackComponent,
+    AddDeadlineComponent
   ],
   imports: [
     BrowserModule,
