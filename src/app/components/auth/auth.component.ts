@@ -20,6 +20,7 @@ export class AuthComponent implements OnInit {
     switch (this.username) {
       case "curator": this.router.navigate(['/curator']); break;
       case "elder": this.router.navigate(['/elder']); break;
+      case "admin": this.router.navigate(['/admin']); break;
       default: console.warn("Incorrect login");
     }
   }

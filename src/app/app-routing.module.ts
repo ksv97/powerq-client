@@ -8,7 +8,7 @@ import {CuratorScheduleComponent} from "./components/curator/pages/curator-sched
 import {CuratorDeadlinesComponent} from "./components/curator/pages/curator-deadlines/curator-deadlines.component";
 import {CuratorProfileComponent} from "./components/curator/curator-profile/curator-profile.component";
 import {MyFeedbacksComponent} from "./components/curator/pages/my-feedbacks/my-feedbacks.component";
-import {AllFeedbacksComponent} from "./components/curator/pages/all-feedbacks/all-feedbacks.component";
+import {AllFeedbacksComponent} from "./components/all-feedbacks/all-feedbacks.component";
 import {ElderProfileComponent} from "./components/elder-curator/elder-profile/elder-profile.component";
 import {FacultyProfileComponent} from "./components/elder-curator/pages/faculty-profile/faculty-profile.component";
 import {FacultyCuratorsComponent} from "./components/elder-curator/pages/faculty-curators/faculty-curators.component";
@@ -18,6 +18,9 @@ import {ElderSchedulePageComponent} from "./components/elder-curator/pages/elder
 import {FacultySchedulePageComponent} from "./components/elder-curator/pages/faculty-schedule-page/faculty-schedule-page.component";
 import {ElderDeadlinesPageComponent} from "./components/elder-curator/pages/elder-deadlines-page/elder-deadlines-page.component";
 import {FacultyDeadlinesPageComponent} from "./components/elder-curator/pages/faculty-deadlines-page/faculty-deadlines-page.component";
+import {ElderFeedbacksPageComponent} from "./components/elder-curator/pages/elder-feedbacks-page/elder-feedbacks-page.component";
+import {CuratorFeedbacksPageComponent} from "./components/curator/pages/curator-feedbacks-page/curator-feedbacks-page.component";
+import {FacultyFeedbacksPageComponent} from "./components/elder-curator/pages/faculty-feedbacks-page/faculty-feedbacks-page.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/elder', pathMatch: 'full' },
@@ -28,7 +31,7 @@ const routes: Routes = [
     {path: 'deadlines', component: CuratorDeadlinesComponent},
     {path: 'profile', component: CuratorProfilePageComponent},
     {path: 'my-feedbacks', component: MyFeedbacksComponent},
-    {path: 'all-feedbacks', component: AllFeedbacksComponent}
+    {path: 'all-feedbacks', component: CuratorFeedbacksPageComponent}
   ]},
   {path: 'elder', component: ElderCuratorComponent, children: [
     { path: '', redirectTo: 'profile', pathMatch: "full"},
@@ -37,10 +40,14 @@ const routes: Routes = [
     {path: 'faculty-curators', component: FacultyCuratorsComponent},
     {path: 'faculty-schedule', component: FacultySchedulePageComponent},
     {path: 'faculty-deadlines', component: FacultyDeadlinesPageComponent},
+    {path: 'faculty-feedbacks', component: FacultyFeedbacksPageComponent},
     {path: 'schedule', component: ElderSchedulePageComponent},
     {path: 'deadlines', component: ElderDeadlinesPageComponent},
+    {path: 'all-feedbacks', component: ElderFeedbacksPageComponent}
   ]},
-  {path: 'admin', component: NavbarComponent}
+  {path: 'admin', component: NavbarComponent, children: [
+
+  ]}
 ];
 
 @NgModule({

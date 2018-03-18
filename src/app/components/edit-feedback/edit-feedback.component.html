@@ -58,7 +58,7 @@
       </div>
 
       <div class="form-group row">
-        <label for="select" class="col-lg-4 col-sm-6 col-form-label">
+        <label for="select" class="col-lg-4 col-sm-6 col-form-label font-weight-bold">
           Форма отчета:
         </label>
         <div class="col-lg-8 col-sm-6">
@@ -72,10 +72,20 @@
 
       <div class="row" *ngFor="let question of questions">
         <div class="col form-group">
-          <label for="feedback-answer">{{question}}</label>
+          <label for="feedback-answer" class="font-weight-bold">{{question}}</label>
           <textarea readonly="true" class="form-control" id="feedback-answer" rows="3">awfawfawfwaf</textarea>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-lg-4 font-weight-bold col-sm-6">
+          Оценка:
+        </div>
+        <div class="col-lg-8 col-sm-6">
+          <ngb-rating [(rate)]="currentRate"></ngb-rating>
+        </div>
+      </div>
+
 
     </div>
 

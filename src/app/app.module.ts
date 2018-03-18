@@ -18,7 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AddDeadlineComponent } from './components/add-deadline/add-deadline.component';
 import { MyFeedbacksComponent } from './components/curator/pages/my-feedbacks/my-feedbacks.component';
 import { EditFeedbackComponent } from './components/edit-feedback/edit-feedback.component';
-import { AllFeedbacksComponent } from './components/curator/pages/all-feedbacks/all-feedbacks.component';
+import { AllFeedbacksComponent } from './components/all-feedbacks/all-feedbacks.component';
 import { ElderProfileComponent } from './components/elder-curator/elder-profile/elder-profile.component';
 import { FacultyProfileComponent } from './components/elder-curator/pages/faculty-profile/faculty-profile.component';
 import { FacultyCuratorsComponent } from './components/elder-curator/pages/faculty-curators/faculty-curators.component';
@@ -32,6 +32,9 @@ import { DeadlineElementComponent } from './components/deadline-element/deadline
 import { DeadlinesComponent } from './components/deadlines/deadlines.component';
 import { ElderDeadlinesPageComponent } from './components/elder-curator/pages/elder-deadlines-page/elder-deadlines-page.component';
 import { FacultyDeadlinesPageComponent } from './components/elder-curator/pages/faculty-deadlines-page/faculty-deadlines-page.component';
+import { ElderFeedbacksPageComponent } from './components/elder-curator/pages/elder-feedbacks-page/elder-feedbacks-page.component';
+import { CuratorFeedbacksPageComponent } from './components/curator/pages/curator-feedbacks-page/curator-feedbacks-page.component';
+import { FacultyFeedbacksPageComponent } from './components/elder-curator/pages/faculty-feedbacks-page/faculty-feedbacks-page.component';
 
 
 @NgModule({
@@ -63,6 +66,9 @@ import { FacultyDeadlinesPageComponent } from './components/elder-curator/pages/
     DeadlinesComponent,
     ElderDeadlinesPageComponent,
     FacultyDeadlinesPageComponent,
+    ElderFeedbacksPageComponent,
+    CuratorFeedbacksPageComponent,
+    FacultyFeedbacksPageComponent,
   ],
   imports: [
     BrowserModule,
