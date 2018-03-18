@@ -24,6 +24,8 @@ import {FacultyFeedbacksPageComponent} from "./components/elder-curator/pages/fa
 import {UsersPageComponent} from "./components/admin/pages/users-page/users-page.component";
 import {AdminSchedulePageComponent} from "./components/admin/pages/admin-schedule-page/admin-schedule-page.component";
 import {AdminDeadlinesPageComponent} from "./components/admin/pages/admin-deadlines-page/admin-deadlines-page.component";
+import {FacultyListPageComponent} from "./components/admin/pages/faculty-list-page/faculty-list-page.component";
+import {FeedbackFormsPageComponent} from "./components/admin/pages/feedback-forms-page/feedback-forms-page.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/admin', pathMatch: 'full' },
@@ -52,6 +54,8 @@ const routes: Routes = [
     {path: 'users', component: UsersPageComponent},
     {path: 'schedule', component: AdminSchedulePageComponent},
     {path: 'deadlines', component: AdminDeadlinesPageComponent},
+    {path: 'faculties', component: FacultyListPageComponent},
+    {path: 'feedback-forms', component: FeedbackFormsPageComponent},
   ]}
 ];
 
