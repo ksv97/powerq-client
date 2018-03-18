@@ -18,6 +18,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { AddDeadlineComponent } from './components/curator/add-deadline/add-deadline.component';
 import { MyFeedbacksComponent } from './components/curator/pages/my-feedbacks/my-feedbacks.component';
 import { EditFeedbackComponent } from './components/curator/edit-feedback/edit-feedback.component';
+import { AllFeedbacksComponent } from './components/curator/pages/all-feedbacks/all-feedbacks.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { EditFeedbackComponent } from './components/curator/edit-feedback/edit-f
     AddFeedbackComponent,
     AddDeadlineComponent,
     MyFeedbacksComponent,
-    EditFeedbackComponent
+    EditFeedbackComponent,
+    AllFeedbacksComponent
   ],
   imports: [
     BrowserModule,
