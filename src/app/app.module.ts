@@ -30,6 +30,8 @@ import { ScheduleElementComponent } from './components/schedule-element/schedule
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { DeadlineElementComponent } from './components/deadline-element/deadline-element.component';
 import { DeadlinesComponent } from './components/deadlines/deadlines.component';
+import { ElderDeadlinesPageComponent } from './components/elder-curator/pages/elder-deadlines-page/elder-deadlines-page.component';
+import { FacultyDeadlinesPageComponent } from './components/elder-curator/pages/faculty-deadlines-page/faculty-deadlines-page.component';
 
 
 @NgModule({
@@ -59,6 +61,8 @@ import { DeadlinesComponent } from './components/deadlines/deadlines.component';
     ScheduleComponent,
     DeadlineElementComponent,
     DeadlinesComponent,
+    ElderDeadlinesPageComponent,
+    FacultyDeadlinesPageComponent,
   ],
   imports: [
     BrowserModule,

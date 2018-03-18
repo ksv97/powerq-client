@@ -16,6 +16,8 @@ import {CuratorProfilePageComponent} from "./components/curator/pages/curator-pr
 import {ElderProfilePageComponent} from "./components/elder-curator/pages/elder-profile-page/elder-profile-page.component";
 import {ElderSchedulePageComponent} from "./components/elder-curator/pages/elder-schedule-page/elder-schedule-page.component";
 import {FacultySchedulePageComponent} from "./components/elder-curator/pages/faculty-schedule-page/faculty-schedule-page.component";
+import {ElderDeadlinesPageComponent} from "./components/elder-curator/pages/elder-deadlines-page/elder-deadlines-page.component";
+import {FacultyDeadlinesPageComponent} from "./components/elder-curator/pages/faculty-deadlines-page/faculty-deadlines-page.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/elder', pathMatch: 'full' },
@@ -34,7 +36,9 @@ const routes: Routes = [
     {path: 'faculty-profile', component: FacultyProfileComponent},
     {path: 'faculty-curators', component: FacultyCuratorsComponent},
     {path: 'faculty-schedule', component: FacultySchedulePageComponent},
+    {path: 'faculty-deadlines', component: FacultyDeadlinesPageComponent},
     {path: 'schedule', component: ElderSchedulePageComponent},
+    {path: 'deadlines', component: ElderDeadlinesPageComponent},
   ]},
   {path: 'admin', component: NavbarComponent}
 ];

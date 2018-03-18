@@ -14,7 +14,7 @@
           <a class="dropdown-item" routerLinkActive="active" [routerLink]="['faculty-profile']">Профиль</a>
           <a class="dropdown-item" routerLinkActive="active"  [routerLink]="['faculty-curators']">Кураторы</a>
           <a class="dropdown-item" routerLinkActive="active"  [routerLink]="['faculty-schedule']">Мероприятия</a>
-          <a class="dropdown-item" >Поставить дедлайн...</a>
+          <a class="dropdown-item" routerLinkActive="active"  [routerLink]="['faculty-deadlines']">Дедлайны</a>
         </div>
       </li>
       <!--<li class="nav-item">-->
@@ -24,7 +24,7 @@
         <a class="nav-link" routerLinkActive="active" [routerLink]="['schedule']">Расписание</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Дедлайны</a>
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['deadlines']">Дедлайны</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Отчеты</a>
