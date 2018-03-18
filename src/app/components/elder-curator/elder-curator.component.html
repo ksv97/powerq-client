@@ -5,11 +5,23 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarsExampleDefault" [ngbCollapse]="isCollapsed">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Профиль <span class="sr-only">(current)</span></a>
-      </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Расписание</a>
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['profile']">Профиль <span class="sr-only">(current)</span></a>
+      </li>
+      <li ngbDropdown  class="nav-item">
+        <a class="nav-link dropdown-toggle" routerLinkActive="active" id="faculty-dropdown" ngbDropdownToggle data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Факультет</a>
+        <div class="dropdown-menu" ngbDropdownMenu  aria-labelledby="faculty-dropdown">
+          <a class="dropdown-item" routerLinkActive="active" [routerLink]="['faculty-profile']">Профиль</a>
+          <a class="dropdown-item" routerLinkActive="active"  [routerLink]="['faculty-curators']">Кураторы</a>
+          <a class="dropdown-item" routerLinkActive="active"  [routerLink]="['faculty-schedule']">Мероприятия</a>
+          <a class="dropdown-item" >Поставить дедлайн...</a>
+        </div>
+      </li>
+      <!--<li class="nav-item">-->
+        <!--<a class="nav-link" routerLinkActive="active" [routerLink]="['faculty-profile']">Факультет</a>-->
+      <!--</li>-->
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['schedule']">Расписание</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Дедлайны</a>
@@ -19,6 +31,7 @@
       </li>
     </ul>
     <p class="mr-sm-2 text-info">Добро пожаловать, Родион!</p>
-    <button class="btn btn-outline-danger my-2 my-sm-0">Выйти</button>
+    <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout()">Выйти</button>
   </div>
 </nav>
+<router-outlet></router-outlet>
