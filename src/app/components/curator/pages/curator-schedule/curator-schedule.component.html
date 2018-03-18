@@ -1,22 +1,24 @@
 <div class="row">
-  <div class="col-lg-2 col-md-2">
-    <button class="btn btn-outline-info" type="button">
-      Добавить мероприятие
-    </button>
-  </div>
-  <div class="col-lg-4 col-md-4">
-    <div class="form-group">
-      <input class="form-control" type="text" placeholder="Поиск">
+  <div class="col-lg-6 col-md-12">
+    <div class="row">
+      <div class="col-lg-4 col-md-4">
+        <button class="btn btn-outline-info" type="button">
+          Добавить мероприятие
+        </button>
+      </div>
+      <div class="col-lg-8 col-md-8">
+        <div class="form-group">
+          <input class="form-control" type="text" placeholder="Поиск">
+        </div>
+      </div>
     </div>
+
+    <div class="mt-2">
+      <app-schedule></app-schedule>
+    </div>
+
+  </div>
+  <div class="col-lg-6 col-md-12">
+    <app-add-event></app-add-event>
   </div>
 </div>
-<div class="row mt-2">
-  <div class="col-lg-6 col-sm-12">
-    <app-schedule></app-schedule>
-  </div>
-
-  <div class="col-lg-6 col-sm-12">
-    <app-add-feedback></app-add-feedback>
-  </div>
-</div>
-
