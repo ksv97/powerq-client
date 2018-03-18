@@ -5,20 +5,26 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarsExampleDefault" [ngbCollapse]="isCollapsed">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Профиль <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['schedule']">Расписание</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Расписание</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Дедлайны</a>
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['deadlines']">Дедлайны</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Отчеты</a>
+      </li>
+      <li ngbDropdown  class="nav-item">
+        <a class="nav-link dropdown-toggle" routerLinkActive="active" id="feedback-dropdown" ngbDropdownToggle data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Администрирование</a>
+        <div class="dropdown-menu" ngbDropdownMenu  aria-labelledby="feedback-dropdown">
+          <a class="dropdown-item" routerLinkActive="active" [routerLink]="['users']">Пользователи</a>
+          <a class="dropdown-item" routerLinkActive="active"  [routerLink]="['']">Факультеты</a>
+          <a class="dropdown-item" routerLinkActive="active"  [routerLink]="['']">Формы отчетов</a>
+        </div>
       </li>
     </ul>
     <p class="mr-sm-2 text-info">Добро пожаловать, Родион!</p>
     <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout()">Выйти</button>
   </div>
 </nav>
+<router-outlet></router-outlet>

@@ -21,9 +21,12 @@ import {FacultyDeadlinesPageComponent} from "./components/elder-curator/pages/fa
 import {ElderFeedbacksPageComponent} from "./components/elder-curator/pages/elder-feedbacks-page/elder-feedbacks-page.component";
 import {CuratorFeedbacksPageComponent} from "./components/curator/pages/curator-feedbacks-page/curator-feedbacks-page.component";
 import {FacultyFeedbacksPageComponent} from "./components/elder-curator/pages/faculty-feedbacks-page/faculty-feedbacks-page.component";
+import {UsersPageComponent} from "./components/admin/pages/users-page/users-page.component";
+import {AdminSchedulePageComponent} from "./components/admin/pages/admin-schedule-page/admin-schedule-page.component";
+import {AdminDeadlinesPageComponent} from "./components/admin/pages/admin-deadlines-page/admin-deadlines-page.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: '/elder', pathMatch: 'full' },
+  { path: '', redirectTo: '/admin', pathMatch: 'full' },
   {path: 'auth', component: AuthComponent},
   {path: 'curator', component: CuratorComponent, children:[
     { path: '', redirectTo: 'profile', pathMatch: "full"},
@@ -46,7 +49,9 @@ const routes: Routes = [
     {path: 'all-feedbacks', component: ElderFeedbacksPageComponent}
   ]},
   {path: 'admin', component: NavbarComponent, children: [
-
+    {path: 'users', component: UsersPageComponent},
+    {path: 'schedule', component: AdminSchedulePageComponent},
+    {path: 'deadlines', component: AdminDeadlinesPageComponent},
   ]}
 ];
 

@@ -35,6 +35,9 @@ import { FacultyDeadlinesPageComponent } from './components/elder-curator/pages/
 import { ElderFeedbacksPageComponent } from './components/elder-curator/pages/elder-feedbacks-page/elder-feedbacks-page.component';
 import { CuratorFeedbacksPageComponent } from './components/curator/pages/curator-feedbacks-page/curator-feedbacks-page.component';
 import { FacultyFeedbacksPageComponent } from './components/elder-curator/pages/faculty-feedbacks-page/faculty-feedbacks-page.component';
+import { UsersPageComponent } from './components/admin/pages/users-page/users-page.component';
+import { AdminSchedulePageComponent } from './components/admin/pages/admin-schedule-page/admin-schedule-page.component';
+import { AdminDeadlinesPageComponent } from './components/admin/pages/admin-deadlines-page/admin-deadlines-page.component';
 
 
 @NgModule({
@@ -69,6 +72,9 @@ import { FacultyFeedbacksPageComponent } from './components/elder-curator/pages/
     ElderFeedbacksPageComponent,
     CuratorFeedbacksPageComponent,
     FacultyFeedbacksPageComponent,
+    UsersPageComponent,
+    AdminSchedulePageComponent,
+    AdminDeadlinesPageComponent,
   ],
   imports: [
     BrowserModule,
