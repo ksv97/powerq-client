@@ -3,6 +3,7 @@ import {Role} from "../../classes/role";
 import {User} from "../../classes/user";
 import {HttpService} from "../../services/http.service";
 import {MessageService} from "../../services/message.service";
+import { ShareService} from "../../services/share.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -16,7 +17,7 @@ export class RegistrationComponent implements OnInit {
   roles: Role[];
   user: User;
 
-  constructor(private http: HttpService, private messageService: MessageService, private router: Router) {
+  constructor(private http: HttpService, private share: ShareService, private messageService: MessageService, private router: Router) {
     this.user = new User();
 
   }
@@ -32,6 +33,7 @@ export class RegistrationComponent implements OnInit {
       result => {
         this.messageService.add('Login check: ' + result)
         if (result == true) {
+          this.share.newUser = this.user;
           switch (this.user.role.name) {
             case 'Куратор': this.router.navigate(['/register-curator'])
           }

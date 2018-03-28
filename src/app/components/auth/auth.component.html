@@ -2,15 +2,10 @@
   <form class="form-signin">
     <h1 class="h3 mb-3 font-weight-normal">Вход в систему</h1>
     <label for="inputEmail" class="sr-only">Имя пользователя</label>
-    <input [(ngModel)]="username" name="username" type="text" id="inputEmail" class="form-control" placeholder="Имя пользователя" required="true" autofocus="">
+    <input [(ngModel)]="user.login" name="username" type="text" id="inputEmail" class="form-control" placeholder="Имя пользователя" required="true" autofocus="">
     <label for="inputPassword" class="sr-only">Пароль</label>
-    <input [(ngModel)]="password" name="password" type="password" id="inputPassword" class="form-control" placeholder="Пароль" required="true">
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Запомнить меня
-      </label>
-    </div>
+    <input [(ngModel)]="user.password" name="password" type="password" id="inputPassword" class="form-control" placeholder="Пароль" required="true">
     <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="auth()">Войти</button>
-    <button class="btn btn-lg btn-outline-secondary btn-block">Зарегистрироваться</button>
+    <button class="btn btn-lg btn-outline-secondary btn-block" (click)="goToRegistration()">Зарегистрироваться</button>
   </form>
 </div>

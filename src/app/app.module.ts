@@ -48,6 +48,7 @@ import { MessagesComponent } from './components/messages/messages.component';
 import {MessageService} from "./services/message.service";
 import {NgSelectModule} from "@ng-select/ng-select";
 import { RegisterCuratorComponent } from './components/register-curator/register-curator.component';
+import { ShareService } from './services/share.service';
 
 
 @NgModule({
@@ -100,7 +101,7 @@ import { RegisterCuratorComponent } from './components/register-curator/register
     HttpClientModule,
     NgSelectModule
   ],
-  providers: [HttpService, MessageService],
+  providers: [HttpService, MessageService, ShareService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

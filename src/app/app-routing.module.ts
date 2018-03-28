@@ -30,7 +30,7 @@ import {RegistrationComponent} from "./components/registration/registration.comp
 import  {RegisterCuratorComponent} from "./components/register-curator/register-curator.component"
 
 const routes: Routes = [
-  { path: '', redirectTo: '/register', pathMatch: 'full' },
+  { path: '', redirectTo: '/auth', pathMatch: 'full' },
   {path: 'auth', component: AuthComponent},
   {path: 'register', component: RegistrationComponent},
   {path: 'register-curator', component: RegisterCuratorComponent},

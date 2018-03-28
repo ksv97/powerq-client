@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { catchError, map, tap} from 'rxjs/operators';
 import {User} from "../classes/user";
+import {Faculty} from "../classes/faculty";
 import {Curator} from "../classes/curator"
 import {Role} from "../classes/role"
 import {HttpClient, HttpHeaders} from "@angular/common/http";
@@ -58,9 +59,9 @@ export class HttpService {
       );
   }
 
-  getFaculties() {
+  getFaculties(): Observable<Faculty[]> {
     let url = this.baseUrl + 'faculties';
-    return this.http.get(url);
+    return this.http.get<Faculty[]>(url);
   }
 
   checkLoginOfUser (user: User) : Observable<boolean> {
@@ -69,21 +70,21 @@ export class HttpService {
     return this.http.post<boolean>(url,JSON.stringify(user), this.httpOptions);
   }
 
-  // registerCurator (curator: Curator) {
-  //   let url = this.baseUrl + 'users/register/curator';
-  //   return this.http.post(url, JSON.stringify(curator), this.requestOpts);
-  // }
+  registerCurator (curator: Curator): Observable<Curator> {
+    let url = this.baseUrl + 'users/register/curator';
+    return this.http.post<Curator>(url, JSON.stringify(curator), this.httpOptions);
+  }
 
   // registerElder (elder: ElderCurator) {
   //   let url = this.baseUrl + 'users/register/elder';
   //   return this.http.post(url, JSON.stringify(elder), this.requestOpts);
   // }
 
-  // logIn(user: User) {
-  //   let url = this.baseUrl + 'users/login';
-  //
-  //   return this.http.post(url,JSON.stringify(user), this.requestOpts).map(result => result.json());
-  // }
+  logIn(user: User): Observable<User> {
+    let url = this.baseUrl + 'users/login';
+
+    return this.http.post<User>(url,JSON.stringify(user), this.httpOptions);
+  }
 
   // getCurator(userId: number) {
   //   let url = this.baseUrl + `users/curator?userId=${userId}`;
