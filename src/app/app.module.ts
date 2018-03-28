@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import  {HttpClientModule} from '@angular/common/http'
 
 
 import { AppComponent } from './app.component';
@@ -41,6 +42,12 @@ import { AdminDeadlinesPageComponent } from './components/admin/pages/admin-dead
 import { FacultyListPageComponent } from './components/admin/pages/faculty-list-page/faculty-list-page.component';
 import { FeedbackFormsPageComponent } from './components/admin/pages/feedback-forms-page/feedback-forms-page.component';
 import { AddFeedbackFormComponent } from './components/add-feedback-form/add-feedback-form.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import {HttpService} from "./services/http.service";
+import { MessagesComponent } from './components/messages/messages.component';
+import {MessageService} from "./services/message.service";
+import {NgSelectModule} from "@ng-select/ng-select";
+import { RegisterCuratorComponent } from './components/register-curator/register-curator.component';
 
 
 @NgModule({
@@ -81,14 +88,19 @@ import { AddFeedbackFormComponent } from './components/add-feedback-form/add-fee
     FacultyListPageComponent,
     FeedbackFormsPageComponent,
     AddFeedbackFormComponent,
+    RegistrationComponent,
+    MessagesComponent,
+    RegisterCuratorComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     NgbModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    NgSelectModule
   ],
-  providers: [],
+  providers: [HttpService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

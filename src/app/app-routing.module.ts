@@ -26,10 +26,14 @@ import {AdminSchedulePageComponent} from "./components/admin/pages/admin-schedul
 import {AdminDeadlinesPageComponent} from "./components/admin/pages/admin-deadlines-page/admin-deadlines-page.component";
 import {FacultyListPageComponent} from "./components/admin/pages/faculty-list-page/faculty-list-page.component";
 import {FeedbackFormsPageComponent} from "./components/admin/pages/feedback-forms-page/feedback-forms-page.component";
+import {RegistrationComponent} from "./components/registration/registration.component";
+import  {RegisterCuratorComponent} from "./components/register-curator/register-curator.component"
 
 const routes: Routes = [
-  { path: '', redirectTo: '/admin', pathMatch: 'full' },
+  { path: '', redirectTo: '/register', pathMatch: 'full' },
   {path: 'auth', component: AuthComponent},
+  {path: 'register', component: RegistrationComponent},
+  {path: 'register-curator', component: RegisterCuratorComponent},
   {path: 'curator', component: CuratorComponent, children:[
     { path: '', redirectTo: 'profile', pathMatch: "full"},
     {path: 'schedule', component: CuratorScheduleComponent},

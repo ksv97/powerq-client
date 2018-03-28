@@ -1,0 +1,22 @@
+<div class="text-center">
+  <div class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal">Регистрация</h1>
+    <label for="regUsername" class="sr-only">Имя пользователя</label>
+    <input [(ngModel)]="user.login" name="regUsername" type="text" id="regUsername" class="form-control" placeholder="Имя пользователя" required="true" autofocus="">
+    <label for="regPassword" class="sr-only">Пароль</label>
+    <input [(ngModel)]="user.password" name="regPassword" type="password" id="regPassword" class="form-control" placeholder="Пароль" required="true">
+
+    <label for="regName" class="sr-only">Имя</label>
+    <input [(ngModel)]="user.firstName" name="regName" type="text" id="regName" class="form-control" placeholder="Имя" required="true">
+    <label for="regSurname" class="sr-only">Фамилия</label>
+    <input [(ngModel)]="user.surName" name="regSurname" type="text" id="regSurname" class="form-control" placeholder="Фамилия" required="true">
+    <div class="form-group">
+      <label for="selectRole">Роль в проекте</label>
+      <select [(ngModel)]="user.role" class="form-control" id="selectRole">
+        <option *ngFor="let role of roles" [ngValue]="role">{{role.name}}</option>
+      </select>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="checkLoginOfUser()">Продолжить</button>
+  </div>
+</div>
+

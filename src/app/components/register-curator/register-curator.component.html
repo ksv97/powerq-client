@@ -1,0 +1,18 @@
+<div class="text-center">
+  <div class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal">Окончание регистрации</h1>
+    <label for="regGroups" class="sr-only">Курируемые группы</label>
+    <input [(ngModel)]="curator.curatedGroups" type="text" id="regGroups" class="form-control" placeholder="Курируемые группы" required="true" autofocus="">
+    <div class="form-group mt-2">
+      <label for="selectCurFac">Факультет</label>
+      <select [(ngModel)]="curator.faculty" class="form-control" id="selectCurFac">
+        <option *ngFor="let fac of faculties" [ngValue]="fac">{{fac.name}}</option>
+      </select>
+    </div>
+
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="registerCurator()">Зарегистрироваться</button>
+  </div>
+</div>
+
+
