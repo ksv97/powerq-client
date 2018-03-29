@@ -61,18 +61,27 @@ export class HttpService {
 
   getFaculties(): Observable<Faculty[]> {
     let url = this.baseUrl + 'faculties';
-    return this.http.get<Faculty[]>(url);
+    return this.http.get<Faculty[]>(url)
+      .pipe(
+        catchError(this.handleError('getFaculties',[]))
+      );
   }
 
   checkLoginOfUser (user: User) : Observable<boolean> {
     let url = this.baseUrl +'users/check';
     console.log(user);
-    return this.http.post<boolean>(url,JSON.stringify(user), this.httpOptions);
+    return this.http.post<boolean>(url,JSON.stringify(user), this.httpOptions)
+      .pipe(
+        catchError(this.handleError<boolean>('checkLoginOfUser',false))
+      );
   }
 
-  registerCurator (curator: Curator): Observable<Curator> {
+  registerCurator (curator: Curator): Observable<any> {
     let url = this.baseUrl + 'users/register/curator';
-    return this.http.post<Curator>(url, JSON.stringify(curator), this.httpOptions);
+    return this.http.post<any>(url, JSON.stringify(curator), this.httpOptions)
+      .pipe(
+        catchError(this.handleError('registerCurator',null))
+      );
   }
 
   // registerElder (elder: ElderCurator) {
@@ -83,20 +92,22 @@ export class HttpService {
   logIn(user: User): Observable<User> {
     let url = this.baseUrl + 'users/login';
 
-    return this.http.post<User>(url,JSON.stringify(user), this.httpOptions);
+    return this.http.post<User>(url,JSON.stringify(user), this.httpOptions)
+      .pipe(
+        catchError(this.handleError<User>('logIn',null))
+      );
   }
 
-  // getCurator(userId: number) {
-  //   let url = this.baseUrl + `users/curator?userId=${userId}`;
-  //
-  //   let opts = new RequestOptions();
-  //   opts.headers = this.requestOpts.headers;
-  //   //opts.params.append('userId', userId.toString());
-  //
-  //   // dont have map operator
-  //   return this.http.get(url, opts).map(result => result.json());
-  //
-  // }
+  getCurator(userId: number): Observable<Curator> {
+    let url = this.baseUrl + `users/curator?userId=${userId}`;
+
+    // dont have map operator
+    return this.http.get<Curator>(url, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<Curator>('getRoles',null))
+      );
+
+  }
 
   /**
    * Handle Http operation that failed.

@@ -25,14 +25,25 @@ export class AuthComponent implements OnInit {
   auth() {
     this.http.logIn(this.user).subscribe(
       existingUser => {
-        this.messageService.add(`Login result: ${existingUser}`);
+        this.messageService.add(`Login successful!`);
         this.shareService.currentUser = existingUser;
+
         if (this.shareService.currentUser.isAdmin == true) {
           this.router.navigate(['/admin'])
         }
         else {
           switch (this.shareService.currentUser.role.name) {
-            case 'Куратор': this.router.navigate(['/curator']); break;
+            case 'Куратор':
+            {
+              this.http.getCurator(existingUser.id).subscribe(
+                existingCurator => {
+                  this.shareService.currentCurator = existingCurator;
+                  this.router.navigate(['/curator']);
+                },
+                error => console.log(error)
+              );
+              break;
+            }
             case 'Старший куратор': this.router.navigate(['/elder']); break;
           }
         }
