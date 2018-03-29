@@ -11,6 +11,7 @@ import {MessageService} from "./message.service";
 import {Observable} from "rxjs";
 import {of} from "rxjs/observable/of";
 import {FeedbackForm} from "../classes/feedback-form";
+import {ElderCurator} from "../classes/elder-curator";
 
 
 @Injectable()
@@ -98,10 +99,13 @@ export class HttpService {
       );
   }
 
-  // registerElder (elder: ElderCurator) {
-  //   let url = this.baseUrl + 'users/register/elder';
-  //   return this.http.post(url, JSON.stringify(elder), this.requestOpts);
-  // }
+  registerElder (elder: ElderCurator): Observable<any> {
+    let url = this.baseUrl + 'users/register/elder';
+    return this.http.post<any>(url, JSON.stringify(elder), this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('registerElder',null))
+      );
+  }
 
   logIn(user: User): Observable<User> {
     let url = this.baseUrl + 'users/login';
@@ -118,7 +122,7 @@ export class HttpService {
     // dont have map operator
     return this.http.get<Curator>(url, this.httpOptions)
       .pipe(
-        catchError(this.handleError<Curator>('getRoles',null))
+        catchError(this.handleError<Curator>('getCurator',null))
       );
 
   }

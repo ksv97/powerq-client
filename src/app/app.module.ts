@@ -53,6 +53,7 @@ import {NgSelectModule} from "@ng-select/ng-select";
 import { RegisterCuratorComponent } from './components/register-curator/register-curator.component';
 import { ShareService } from './services/share.service';
 import { EditEventComponent } from './components/edit-event/edit-event.component';
+import { RegisterElderComponent } from './components/register-elder/register-elder.component';
 
 
 @NgModule({
@@ -97,6 +98,7 @@ import { EditEventComponent } from './components/edit-event/edit-event.component
     MessagesComponent,
     RegisterCuratorComponent,
     EditEventComponent,
+    RegisterElderComponent,
   ],
   imports: [
     BrowserModule,

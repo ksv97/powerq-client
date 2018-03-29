@@ -28,12 +28,14 @@ import {FacultyListPageComponent} from "./components/admin/pages/faculty-list-pa
 import {FeedbackFormsPageComponent} from "./components/admin/pages/feedback-forms-page/feedback-forms-page.component";
 import {RegistrationComponent} from "./components/registration/registration.component";
 import  {RegisterCuratorComponent} from "./components/register-curator/register-curator.component"
+import {RegisterElderComponent} from "./components/register-elder/register-elder.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/auth', pathMatch: 'full' },
   {path: 'auth', component: AuthComponent},
   {path: 'register', component: RegistrationComponent},
   {path: 'register-curator', component: RegisterCuratorComponent},
+  {path: 'register-elder', component: RegisterElderComponent},
   {path: 'curator', component: CuratorComponent, children:[
     { path: '', redirectTo: 'profile', pathMatch: "full"},
     {path: 'schedule', component: CuratorScheduleComponent},

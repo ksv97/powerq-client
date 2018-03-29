@@ -43,7 +43,10 @@ export class AuthComponent implements OnInit {
               );
               break;
             }
-            case 'Старший куратор': this.router.navigate(['/elder']); break;
+            case 'Старший куратор': {
+              this.router.navigate(['/elder']);
+              break;
+            }
           }
         }
       }
