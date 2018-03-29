@@ -10,6 +10,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {MessageService} from "./message.service";
 import {Observable} from "rxjs";
 import {of} from "rxjs/observable/of";
+import {FeedbackForm} from "../classes/feedback-form";
 
 
 @Injectable()
@@ -51,6 +52,13 @@ export class HttpService {
   //   let url = this.baseUrl + `events/delete`;
   //   return this.http.post(url, JSON.stringify(id), this.requestOpts);
   // }
+  getFeedbackForms(): Observable<FeedbackForm[]> {
+    let url = this.baseUrl + `feedbackforms`;
+    return this.http.get<FeedbackForm[]>(url)
+      .pipe(
+        catchError(this.handleError('getFeedbackForms',[]))
+      )
+  }
 
   getDeadlines (userId:number) {
     let url = this.baseUrl + `events/deadlines?userId=${userId}`;

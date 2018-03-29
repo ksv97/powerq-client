@@ -1,4 +1,4 @@
-<form>
+<div>
   <div class="card">
     <div class="card-header">
       <h5>Новый отчет</h5>
@@ -39,17 +39,15 @@
           Форма отчета:
         </label>
         <div class="col-lg-8 col-sm-6">
-          <select id="select" class="form-control">
-            <option>Отчет о 1 кч</option>
-            <option>Отчет о 2 кч</option>
-            <option>...</option>
+          <select [(ngModel)]="feedbackForm" id="select" class="form-control">
+            <option *ngFor="let form of mockFeedbackForms" [ngValue]="form">{{form.name}}</option>
           </select>
         </div>
       </div>
 
-      <div class="row" *ngFor="let question of questions">
+      <div class="row" *ngFor="let question of feedbackForm.questions">
         <div class="col form-group">
-          <label for="feedback-answer">{{question}}</label>
+          <label for="feedback-answer">{{question.name}}</label>
           <textarea class="form-control" id="feedback-answer" rows="3"></textarea>
         </div>
       </div>
@@ -58,7 +56,7 @@
 
     <div class="card-footer">
       <div>
-        <button class="btn btn-success">Сохранить</button>
+        <button class="btn btn-success" (click)="saveFeedback()">Сохранить</button>
         <button class="btn btn-danger">Отмена</button>
       </div>
     </div>
@@ -66,4 +64,4 @@
 
 
 
-</form>
+</div>
