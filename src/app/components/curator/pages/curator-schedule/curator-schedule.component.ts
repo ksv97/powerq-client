@@ -12,12 +12,16 @@ import {Subscription} from "rxjs";
 export class CuratorScheduleComponent implements OnInit {
 
   eventForFeedback: Event;
+  eventForEditing: Event;
   curatorEvents: Event[] = [];
   isAddingEvent: boolean = false;
   isAddingFeedback: boolean = false;
+  isEditingEvent: boolean = false;
 
   private addFeedbackSubscription: Subscription;
   private saveFeedbackSubscription: Subscription;
+  private editEventSubscription: Subscription;
+  private confirmEditEventSubscription: Subscription;
 
   constructor(private http: HttpService, public shareService: ShareService) {
     this.addFeedbackSubscription = this.shareService.addFeedbackEvent.subscribe( eventForFeedback => {
@@ -28,6 +32,18 @@ export class CuratorScheduleComponent implements OnInit {
     this.saveFeedbackSubscription = this.shareService.saveFeedbackEvent.subscribe( feedback => {
       this.isAddingFeedback = false;
       console.log(feedback);
+    });
+
+    this.editEventSubscription = this.shareService.editEventEvent.subscribe( eventToEdit => {
+      this.isEditingEvent = true;
+      this.eventForEditing = eventToEdit;
+
+    });
+
+    this.confirmEditEventSubscription = this.shareService.confirmEditEvent.subscribe( editedEvent => {
+      let indexOfOldEvent = this.curatorEvents.indexOf(editedEvent.id);
+      this.curatorEvents[indexOfOldEvent] = editedEvent;
+      this.isEditingEvent = false;
     })
   }
 
@@ -39,6 +55,13 @@ export class CuratorScheduleComponent implements OnInit {
         console.warn(events);
       }
     )
+  }
+
+  ngOnDestroy () {
+    this.saveFeedbackSubscription.unsubscribe();
+    this.addFeedbackSubscription.unsubscribe();
+    this.editEventSubscription.unsubscribe();
+    this.confirmEditEventSubscription.unsubscribe();
   }
 
   saveEvent(newEvent: Event) {

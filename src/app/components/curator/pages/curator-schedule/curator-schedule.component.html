@@ -27,5 +27,9 @@
       <app-add-feedback [eventForFeedback]="eventForFeedback" ></app-add-feedback>
     </div>
 
+    <div *ngIf="isEditingEvent">
+      <app-edit-event [editEvent]="eventForEditing"></app-edit-event>
+    </div>
+
   </div>
 </div>

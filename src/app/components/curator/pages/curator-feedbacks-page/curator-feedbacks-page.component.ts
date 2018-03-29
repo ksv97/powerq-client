@@ -25,4 +25,8 @@ export class CuratorFeedbacksPageComponent implements OnInit {
 
   }
 
+  ngOnDestroy () {
+    this.saveFeedbackSubscription.unsubscribe();
+  }
+
 }

@@ -1,3 +1,19 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Подтверждение удаления</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Вы действительно хотите удалить элемент "<b>{{event.title}}</b>"?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-danger" (click)="c('Close click')">Удалить</button>
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Отмена</button>
+  </div>
+</ng-template>
+
 <div class="card">
   <div class="card-header" id="headingOne">
     <div class="row mb-0" (click)="isCollapsed1=!isCollapsed1" aria-controls="collapseOne" [attr.aria-expanded]="!isCollapsed1">
@@ -24,13 +40,16 @@
           <button class="btn btn-outline-primary" (click)="addFeedback()">Добавить отчет</button>
         </div>
         <div class="col-lg-4 col-md-4">
-          <button class="btn btn-outline-warning">Изменить</button>
+          <button class="btn btn-outline-warning" (click)="editEvent()">Изменить</button>
         </div>
         <div class="col-lg-4 col-md-4">
-          <button class="btn btn-outline-danger">Удалить</button>
+          <button class="btn btn-outline-danger" (click)="openModal(content)">Удалить</button>
         </div>
 
       </div>
     </div>
   </div>
 </div>
+
+
+
