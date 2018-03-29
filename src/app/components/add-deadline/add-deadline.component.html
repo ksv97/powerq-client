@@ -21,10 +21,10 @@
 
       <div class="row mt-2">
         <div class="col-lg-6">
-          <ngb-datepicker #dp [(ngModel)]="model" name="date" (navigate)="date = $event.next"></ngb-datepicker>
+          <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
         </div>
         <div class="col-lg-6">
-          <ngb-timepicker [(ngModel)]="time" name="time"></ngb-timepicker>
+          <ngb-timepicker [(ngModel)]="time" ></ngb-timepicker>
         </div>
       </div>
 

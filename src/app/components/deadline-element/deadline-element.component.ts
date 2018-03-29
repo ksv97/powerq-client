@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'app-deadline-element',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./deadline-element.component.css']
 })
 export class DeadlineElementComponent implements OnInit {
+
+  @Input() deadline: Event;
 
   constructor() { }
 

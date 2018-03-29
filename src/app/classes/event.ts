@@ -10,6 +10,7 @@ export class Event {
   constructor () {
       this.date = new Date();
       this.users = [];
+      this.isDeadline = false;
   }
 
 }

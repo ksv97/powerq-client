@@ -1,3 +1,8 @@
-<app-deadline-element></app-deadline-element>
-<app-deadline-element></app-deadline-element>
-<app-deadline-element></app-deadline-element>
+<div *ngIf="deadlines.length">
+  <div *ngFor="let deadline of deadlines">
+    <app-deadline-element [deadline]="deadline"></app-deadline-element>
+  </div>
+</div>
+
+
+
