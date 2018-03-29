@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Subscription} from "rxjs";
+import {ShareService} from "../../../../services/share.service";
+import {HttpService} from "../../../../services/http.service";
+import {Feedback} from "../../../../classes/feedback";
 
 @Component({
   selector: 'app-curator-feedbacks-page',
@@ -7,9 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CuratorFeedbacksPageComponent implements OnInit {
 
-  constructor() { }
+  feedbacks: Feedback[];
+
+  private saveFeedbackSubscription: Subscription;
+
+  constructor(public shareService: ShareService, private http: HttpService) {
+    this.saveFeedbackSubscription = this.shareService.saveFeedbackEvent.subscribe(feedback => {
+      this.feedbacks.push(feedback);
+    })
+  }
 
   ngOnInit() {
+
   }
 
 }

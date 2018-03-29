@@ -39,16 +39,16 @@
           Форма отчета:
         </label>
         <div class="col-lg-8 col-sm-6">
-          <select [(ngModel)]="feedbackForm" id="select" class="form-control">
+          <select [(ngModel)]="feedbackForm" (change)="onFeedbackFormChanged()" id="select" class="form-control">
             <option *ngFor="let form of mockFeedbackForms" [ngValue]="form">{{form.name}}</option>
           </select>
         </div>
       </div>
 
-      <div class="row" *ngFor="let question of feedbackForm.questions">
+      <div class="row" *ngFor="let feedbackAnswer of feedbackAnswerForm.feedbackAnswers">
         <div class="col form-group">
-          <label for="feedback-answer">{{question.name}}</label>
-          <textarea class="form-control" id="feedback-answer" rows="3"></textarea>
+          <label for="feedback-answer">{{feedbackAnswer.question}}</label>
+          <textarea class="form-control" [(ngModel)]="feedbackAnswer.answer" id="feedback-answer" rows="3"></textarea>
         </div>
       </div>
 

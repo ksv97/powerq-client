@@ -17,11 +17,17 @@ export class CuratorScheduleComponent implements OnInit {
   isAddingFeedback: boolean = false;
 
   private addFeedbackSubscription: Subscription;
+  private saveFeedbackSubscription: Subscription;
 
   constructor(private http: HttpService, public shareService: ShareService) {
     this.addFeedbackSubscription = this.shareService.addFeedbackEvent.subscribe( eventForFeedback => {
       this.isAddingFeedback = true;
       this.eventForFeedback = eventForFeedback;
+    });
+
+    this.saveFeedbackSubscription = this.shareService.saveFeedbackEvent.subscribe( feedback => {
+      this.isAddingFeedback = false;
+      console.log(feedback);
     })
   }
 
