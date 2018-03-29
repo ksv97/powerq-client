@@ -2,7 +2,7 @@
   <div class="col-lg-6 col-md-12">
     <div class="row">
       <div class="col-lg-4 col-md-4">
-        <button class="btn btn-outline-info" type="button">
+        <button class="btn btn-outline-info" type="button" (click)="isAddingEvent=true">
           Добавить мероприятие
         </button>
       </div>
@@ -14,11 +14,18 @@
     </div>
 
     <div class="mt-2">
-      <app-schedule></app-schedule>
+      <app-schedule [events]="curatorEvents"></app-schedule>
     </div>
 
   </div>
   <div class="col-lg-6 col-md-12">
-    <app-add-event></app-add-event>
+    <div *ngIf="isAddingEvent">
+      <app-add-event (onEventSaved)="saveEvent($event)" (onEventCanceled)="isAddingEvent=false" ></app-add-event>
+    </div>
+
+    <div *ngIf="isAddingFeedback">
+      <app-add-feedback [eventForFeedback]="eventForFeedback" ></app-add-feedback>
+    </div>
+
   </div>
 </div>

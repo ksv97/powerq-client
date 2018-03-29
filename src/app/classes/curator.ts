@@ -5,6 +5,7 @@ export class Curator {
   user: User;
   faculty:  Faculty;
   curatedGroups: string;
+  mark: number;
 
   constructor () {
     this.user = new User();

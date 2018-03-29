@@ -4,6 +4,7 @@ import { catchError, map, tap} from 'rxjs/operators';
 import {User} from "../classes/user";
 import {Faculty} from "../classes/faculty";
 import {Curator} from "../classes/curator"
+import {Event} from "../classes/event"
 import {Role} from "../classes/role"
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {MessageService} from "./message.service";
@@ -24,17 +25,22 @@ export class HttpService {
   constructor(private http: HttpClient, private messageService: MessageService) {
   }
 
-  // createEvent (event: ScheduleEvent) {
-  //   let url = this.baseUrl + 'events/create';
-  //   return this.http.post(url, JSON.stringify(event), this.requestOpts);
-  // }
+  createEvent (event: Event): Observable<any> {
+    let url = this.baseUrl + 'events/create';
+    return this.http.post<any>(url, JSON.stringify(event), this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('createEvent', null))
+      );
+  }
 
-  // getEvents(userId: number) {
-  //   let url = this.baseUrl + `events?userId=${userId}`;
-  //   let opts = new RequestOptions();
-  //   opts.headers = this.requestOpts.headers;
-  //   return this.http.get(url, opts).map(result => result.json());
-  // }
+  getEvents(userId: number): Observable<Event[]> {
+    let url = this.baseUrl + `events?userId=${userId}`;
+
+    return this.http.get<Event[]>(url, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<Event[]>('getEvents', []))
+      );
+  }
 
   // updateEvent (event: ScheduleEvent) {
   //   let url = this.baseUrl + `events/update`;

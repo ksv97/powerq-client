@@ -1,7 +1,7 @@
 
     <div class="card">
       <div class="card-header">
-        <h5>Профиль пользователя Косов Родион</h5>
+        <h5>Профиль пользователя {{shareService.currentUser.firstName + ' ' + shareService.currentUser.surName}}</h5>
       </div>
       <div class="card-body" >
         <div class="row">
@@ -14,7 +14,7 @@
             <p class="font-weight-bold">Факультет:</p>
           </div>
           <div class="col-lg-6 col-sm-6">
-            <p>ИВТФ</p>
+            <p>{{shareService.currentCurator.faculty.name}}</p>
           </div>
         </div>
 
@@ -23,7 +23,7 @@
             <p class="font-weight-bold">Курируемые группы:</p>
           </div>
           <div class="col-lg-6 col-sm-6">
-            <p>1-41, 1-42</p>
+            <p>{{shareService.currentCurator.curatedGroups}}</p>
           </div>
         </div>
 
@@ -38,7 +38,7 @@
             <p class="font-weight-bold">Личный:</p>
           </div>
           <div class="col-lg-6 col-sm-6">
-            <p>36,5</p>
+            <p>{{shareService.currentCurator.mark}}</p>
           </div>
         </div>
 
@@ -47,7 +47,7 @@
             <p class="font-weight-bold">Факультетский:</p>
           </div>
           <div class="col-lg-6 col-sm-6">
-            <p>25</p>
+            <p>{{shareService.currentCurator.faculty.mark}}</p>
           </div>
         </div>
 

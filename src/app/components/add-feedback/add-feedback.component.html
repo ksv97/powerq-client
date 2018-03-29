@@ -14,7 +14,7 @@
           Название:
         </div>
         <div class="col-lg-8 col-sm-6">
-          Провести кураторский час с группой 1-41
+          {{eventForFeedback.title}}
         </div>
       </div>
       <div class="row">
@@ -22,7 +22,7 @@
           Дата и время:
         </div>
         <div class="col-lg-8 col-sm-6">
-          25 марта в 14:00
+          {{eventForFeedback.date | date:'medium':'':'ru'}}
         </div>
       </div>
 

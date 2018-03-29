@@ -2,9 +2,9 @@
   <div class="card-header" id="headingOne">
     <div class="row mb-0" (click)="isCollapsed1=!isCollapsed1" aria-controls="collapseOne" [attr.aria-expanded]="!isCollapsed1">
       <div class="col-lg-3">
-        25 марта в 14:00
+        {{event.date | date:'medium':'':'ru'}}
       </div>
-      <div class="col-lg-9">Провести кураторский час с группой 1-41</div>
+      <div class="col-lg-9">{{event.title}}</div>
     </div>
     <!--<h5 class="mb-0">-->
     <!--<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">-->
@@ -15,12 +15,12 @@
 
   <div id="collapseOne" class="collapse" [ngbCollapse]="isCollapsed1" aria-labelledby="headingOne" data-parent="#accordion">
     <div class="card-body">
-      Аудитория - Б101. Кураторский час на знакомство. Упражнения доступны по ссылке vk.com/power_q
+      {{event.description}}
 
     </div>
     <div class="card-footer">
       <div class="text-center">
-        <button class="btn btn-outline-primary">Добавить отчет</button>
+        <button class="btn btn-outline-primary" (click)="addFeedback()">Добавить отчет</button>
       </div>
     </div>
   </div>

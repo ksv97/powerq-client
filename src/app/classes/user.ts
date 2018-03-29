@@ -15,4 +15,6 @@ export class User {
     this.id = -1;
     this.isAdmin = false;
   }
+
+
 }

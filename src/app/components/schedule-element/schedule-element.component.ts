@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import {Event} from '../../classes/event'
+import {ShareService} from "../../services/share.service";
 
 @Component({
   selector: 'app-schedule-element',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScheduleElementComponent implements OnInit {
 
-  constructor() { }
+  @Input() event: Event;
+
+  constructor(private shareService: ShareService) { }
 
   ngOnInit() {
+  }
+
+  addFeedback() {
+    this.shareService.addFeedbackClicked(this.event);
   }
 
   public isCollapsed1 = true;

@@ -39,8 +39,7 @@ export class AuthComponent implements OnInit {
                 existingCurator => {
                   this.shareService.currentCurator = existingCurator;
                   this.router.navigate(['/curator']);
-                },
-                error => console.log(error)
+                }
               );
               break;
             }

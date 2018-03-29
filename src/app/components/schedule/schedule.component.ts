@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import {Event} from '../../classes/event'
 
 @Component({
   selector: 'app-schedule',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScheduleComponent implements OnInit {
 
-  constructor() { }
+  @Input() events: Event[];
+
+  constructor() {
+    this.events = [];
+  }
 
   ngOnInit() {
   }

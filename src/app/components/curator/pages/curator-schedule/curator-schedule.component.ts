@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpService} from "../../../../services/http.service";
+import  {Event} from '../../../../classes/event'
+import {ShareService} from "../../../../services/share.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-curator-schedule',
@@ -7,12 +11,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CuratorScheduleComponent implements OnInit {
 
-  public isCollapsed1 = true;
-  public isCollapsed2 = true;
+  eventForFeedback: Event;
+  curatorEvents: Event[] = [];
+  isAddingEvent: boolean = false;
+  isAddingFeedback: boolean = false;
 
-  constructor() { }
+  private addFeedbackSubscription: Subscription;
+
+  constructor(private http: HttpService, public shareService: ShareService) {
+    this.addFeedbackSubscription = this.shareService.addFeedbackEvent.subscribe( eventForFeedback => {
+      this.isAddingFeedback = true;
+      this.eventForFeedback = eventForFeedback;
+    })
+  }
 
   ngOnInit() {
+    this.http.getEvents(this.shareService.currentUser.id).subscribe(
+      events =>
+      {
+        this.curatorEvents = events;
+        console.warn(events);
+      }
+    )
+  }
+
+  saveEvent(newEvent: Event) {
+    this.curatorEvents.push(newEvent);
+    this.isAddingEvent = false;
   }
 
 }

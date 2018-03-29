@@ -1,3 +1,6 @@
-<app-schedule-element></app-schedule-element>
-<app-schedule-element></app-schedule-element>
-<app-schedule-element></app-schedule-element>
+<div *ngIf="events.length">
+  <div  *ngFor="let event of events">
+    <app-schedule-element [event]="event"></app-schedule-element>
+  </div>
+</div>
+
