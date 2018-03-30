@@ -67,7 +67,7 @@ export class AddFeedbackComponent implements OnInit {
   }
 
   saveFeedback() {
-    let feedback: Feedback = new Feedback();
+    let feedback: Feedback = new Feedback(this.shareService.currentUser);
     feedback.event = this.eventForFeedback;
     feedback.feedbackAnswerForm = this.feedbackAnswerForm;
     this.shareService.saveFeedbackClicked(feedback);

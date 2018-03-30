@@ -18,7 +18,7 @@ export class EditEventComponent implements OnInit {
   time = {hour: 13, minute: 30};
 
   constructor(public shareService: ShareService) {
-    this.editedEvent = new Event();
+    this.editedEvent = new Event(this.shareService.currentUser);
   }
 
   ngOnInit() {

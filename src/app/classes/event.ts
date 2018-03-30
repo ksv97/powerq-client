@@ -6,11 +6,13 @@ export class Event {
   description: string;
   isDeadline: boolean;
   users: User[];
+  author: User;
 
-  constructor () {
+  constructor (author: User) {
       this.date = new Date();
       this.users = [];
       this.isDeadline = false;
+      this.author = author;
   }
 
 }

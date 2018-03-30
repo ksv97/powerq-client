@@ -21,7 +21,7 @@ export class AddEventComponent implements OnInit {
 
   constructor(private http: HttpService, private shareService: ShareService,
               private messageService: MessageService) {
-    this.newEvent = new Event();
+    this.newEvent = new Event(this.shareService.currentUser);
     this.newEvent.users.push(this.shareService.currentUser);
   }
 
@@ -31,7 +31,7 @@ export class AddEventComponent implements OnInit {
   saveEvent() {
 
     if (this.model) {
-      this.newEvent.date.setFullYear(this.model.year, this.model.month, this.model.day);
+      this.newEvent.date.setFullYear(this.model.year, this.model.month - 1, this.model.day);
     }
     this.newEvent.date.setHours(this.time.hour, this.time.minute);
     this.http.createEvent(this.newEvent).subscribe(
@@ -40,7 +40,6 @@ export class AddEventComponent implements OnInit {
         this.newEvent.id = eventId;
       }
     );
-    // TODO add received ID from database to new Event
     this.onEventSaved.emit(this.newEvent);
   }
 

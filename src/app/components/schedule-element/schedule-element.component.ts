@@ -15,7 +15,7 @@ export class ScheduleElementComponent implements OnInit {
 
   @Input() event: Event;
 
-  constructor(private shareService: ShareService, private modalService: NgbModal) { }
+  constructor(public  shareService: ShareService, private modalService: NgbModal) { }
 
   ngOnInit() {
   }
