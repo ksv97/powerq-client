@@ -9,7 +9,7 @@
           Название:
         </label>
         <div class="col-lg-9 col-sm-6">
-          <input id="inputName" placeholder="Название" [(ngModel)]="editEvent.title" type="text" class="form-control">
+          <input id="inputName" placeholder="Название" [(ngModel)]="editedEvent.title" type="text" class="form-control">
         </div>
       </div>
 
@@ -33,7 +33,7 @@
           Описание:
         </label>
         <div class="col-lg-9 col-sm-6">
-          <textarea id="inputDescription" placeholder="Описание" [(ngModel)]="editEvent.description" rows="3" class="form-control"></textarea>
+          <textarea id="inputDescription" placeholder="Описание" [(ngModel)]="editedEvent.description" rows="3" class="form-control"></textarea>
         </div>
       </div>
 
@@ -42,7 +42,7 @@
     <div class="card-footer">
       <div>
         <button class="btn btn-success" (click)="saveEvent()">Сохранить</button>
-        <button class="btn btn-danger" (click)="cancelNewEvent()">Отмена</button>
+        <button class="btn btn-danger" (click)="cancelEdit()">Отмена</button>
       </div>
     </div>
   </div>

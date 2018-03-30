@@ -9,7 +9,7 @@
     <p>Вы действительно хотите удалить элемент "<b>{{event.title}}</b>"?</p>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-danger" (click)="c('Close click')">Удалить</button>
+    <button type="button" class="btn btn-outline-danger" (click)="c('Close click'); deleteEvent()">Удалить</button>
     <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Отмена</button>
   </div>
 </ng-template>

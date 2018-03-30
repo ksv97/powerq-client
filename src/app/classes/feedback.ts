@@ -1,7 +1,7 @@
 import {FeedbackAnswerForm} from "./feedback-answer-form";
 import {Event} from './event'
 export class Feedback {
-  id: number;
+  // id: number;
   dateOfWriting: Date;
   mark: number;
   feedbackAnswerForm: FeedbackAnswerForm;
@@ -9,7 +9,7 @@ export class Feedback {
 
   constructor() {
     this.dateOfWriting = new Date();
-    this.id = -1;
+    // this.id = -1;
     this.feedbackAnswerForm = new FeedbackAnswerForm();
     this.event = new Event();
   }

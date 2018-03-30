@@ -44,15 +44,22 @@ export class HttpService {
       );
   }
 
-  // updateEvent (event: ScheduleEvent) {
-  //   let url = this.baseUrl + `events/update`;
-  //   return this.http.post(url, JSON.stringify(event), this.requestOpts);
-  // }
+  updateEvent (event: Event): Observable<any> {
+    let url = this.baseUrl + `events/update`;
+    return this.http.post<any>(url, JSON.stringify(event), this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('updateEvent',null))
+      );
+  }
 
-  // deleteEvent (id:number) {
-  //   let url = this.baseUrl + `events/delete`;
-  //   return this.http.post(url, JSON.stringify(id), this.requestOpts);
-  // }
+  deleteEvent (id:number): Observable<any> {
+    let url = this.baseUrl + `events/delete`;
+    return this.http.post<any>(url, JSON.stringify(id), this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('deleteEvent',null))
+      );
+  }
+
   getFeedbackForms(): Observable<FeedbackForm[]> {
     let url = this.baseUrl + `feedbackforms`;
     return this.http.get<FeedbackForm[]>(url)

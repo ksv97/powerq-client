@@ -34,9 +34,12 @@ export class AddEventComponent implements OnInit {
       this.newEvent.date.setFullYear(this.model.year, this.model.month, this.model.day);
     }
     this.newEvent.date.setHours(this.time.hour, this.time.minute);
-    // this.http.createEvent(this.newEvent).subscribe(
-    //   result => this.messageService.add('Event created successfully')
-    // )
+    this.http.createEvent(this.newEvent).subscribe(
+      eventId => {
+        this.messageService.add('Event created successfully')
+        this.newEvent.id = eventId;
+      }
+    );
     // TODO add received ID from database to new Event
     this.onEventSaved.emit(this.newEvent);
   }

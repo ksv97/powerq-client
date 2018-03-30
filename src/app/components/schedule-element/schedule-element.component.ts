@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import {Event} from '../../classes/event'
 import {ShareService} from "../../services/share.service";
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {HttpService} from "../../services/http.service";
+import {MessageService} from "../../services/message.service";
 
 
 @Component({
@@ -29,6 +31,10 @@ export class ScheduleElementComponent implements OnInit {
   openModal(content) {
    this.modalService.open(content)
 
+  }
+
+  deleteEvent() {
+    this.shareService.deleteEventConfirmed(this.event.id);
   }
 
   public isCollapsed1 = true;

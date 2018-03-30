@@ -15,6 +15,8 @@ export class ShareService {
   public saveFeedbackEvent: EventEmitter<Feedback> = new EventEmitter();
   public editEventEvent: EventEmitter<Event> = new EventEmitter<Event>();
   public confirmEditEvent: EventEmitter<Event> = new EventEmitter<Event>();
+  public deleteEventEvent: EventEmitter<number> = new EventEmitter<number>();
+  public cancelEditEvent: EventEmitter = new EventEmitter();
 
   constructor() { }
 
@@ -32,5 +34,13 @@ export class ShareService {
 
   public confirmEditClicked(editedEvent: Event) {
     this.confirmEditEvent.emit(editedEvent);
+  }
+
+  public deleteEventConfirmed (deletedEventID: number) {
+    this.deleteEventEvent.emit(deletedEventID);
+  }
+
+  public cancelEventClicked() {
+    this.cancelEditEvent.emit();
   }
 }

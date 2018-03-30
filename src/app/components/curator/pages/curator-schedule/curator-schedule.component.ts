@@ -22,11 +22,13 @@ export class CuratorScheduleComponent implements OnInit {
   private saveFeedbackSubscription: Subscription;
   private editEventSubscription: Subscription;
   private confirmEditEventSubscription: Subscription;
+  private cancelEditEventSubscription: Subscription;
+  // private deleteEventSubscription: Subscription;
 
   constructor(private http: HttpService, public shareService: ShareService) {
     this.addFeedbackSubscription = this.shareService.addFeedbackEvent.subscribe( eventForFeedback => {
-      this.isAddingFeedback = true;
       this.eventForFeedback = eventForFeedback;
+      this.isAddingFeedback = true;
     });
 
     this.saveFeedbackSubscription = this.shareService.saveFeedbackEvent.subscribe( feedback => {
@@ -35,16 +37,29 @@ export class CuratorScheduleComponent implements OnInit {
     });
 
     this.editEventSubscription = this.shareService.editEventEvent.subscribe( eventToEdit => {
-      this.isEditingEvent = true;
       this.eventForEditing = eventToEdit;
-
+      this.isEditingEvent = true;
     });
 
     this.confirmEditEventSubscription = this.shareService.confirmEditEvent.subscribe( editedEvent => {
-      let indexOfOldEvent = this.curatorEvents.indexOf(editedEvent.id);
-      this.curatorEvents[indexOfOldEvent] = editedEvent;
+      // let indexOfOldEvent = this.curatorEvents.indexOf(editedEvent.id);
+      // this.curatorEvents[indexOfOldEvent] = editedEvent;
       this.isEditingEvent = false;
-    })
+    });
+
+    this.cancelEditEventSubscription = this.shareService.cancelEditEvent.subscribe(
+      _ => this.isEditingEvent = false
+    );
+
+    // this.deleteEventSubscription = this.shareService.deleteEventEvent.subscribe(deletedEventId => {
+    //   let eventToDelete: Event = this.curatorEvents.filter(i => i.id == deletedEventId)[0];
+    //   if (eventToDelete) {
+    //     let indexToDelete: number = this.curatorEvents.indexOf(eventToDelete);
+    //     if (indexToDelete > -1) {
+    //       this.curatorEvents.splice(indexToDelete, 1);
+    //     }
+    //   }
+    // })
   }
 
   ngOnInit() {
