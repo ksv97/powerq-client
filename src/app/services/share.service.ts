@@ -16,7 +16,7 @@ export class ShareService {
   public editEventEvent: EventEmitter<Event> = new EventEmitter<Event>();
   public confirmEditEvent: EventEmitter<Event> = new EventEmitter<Event>();
   public deleteEventEvent: EventEmitter<number> = new EventEmitter<number>();
-  public cancelEditEvent: EventEmitter = new EventEmitter();
+  public cancelEditEvent: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -41,6 +41,6 @@ export class ShareService {
   }
 
   public cancelEventClicked() {
-    this.cancelEditEvent.emit();
+    this.cancelEditEvent.emit(1);
   }
 }

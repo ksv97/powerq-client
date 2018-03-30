@@ -48,7 +48,7 @@ export class CuratorScheduleComponent implements OnInit {
     });
 
     this.cancelEditEventSubscription = this.shareService.cancelEditEvent.subscribe(
-      _ => this.isEditingEvent = false
+      res => this.isEditingEvent = false
     );
 
     // this.deleteEventSubscription = this.shareService.deleteEventEvent.subscribe(deletedEventId => {
