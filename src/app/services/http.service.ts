@@ -44,6 +44,26 @@ export class HttpService {
       );
   }
 
+  updateFeedback (feedback: Feedback) {
+    let url = this.baseUrl + 'feedback/update';
+    return this.http.post<any>(url, JSON.stringify(feedback), this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('updateFeedback', null))
+      );
+  }
+
+  deleteFeedback (eventId: number, userId: number) {
+    let url = this.baseUrl + 'feedback/delete';
+    let body = {
+      eventId: eventId,
+      userId: userId
+    };
+    return this.http.post<any>(url, JSON.stringify(body), this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('deleteFeedback', null))
+      );
+  }
+
   getAllFeedbacks(): Observable<Feedback[]> {
     let url = this.baseUrl + 'feedback/all';
     return this.http.get<Feedback[]>(url)

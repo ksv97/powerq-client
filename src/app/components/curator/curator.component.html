@@ -22,9 +22,14 @@
         </div>
       </li>
     </ul>
-      <p class="mr-sm-2 text-center text-info">Добро пожаловать, {{shareService.currentUser.firstName}}!</p>
-      <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout()">Выйти</button>
+      <p class="mr-sm-2  text-center text-info align-middle">Добро пожаловать, {{shareService.currentUser.firstName}}!</p>
+      <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout()">
+        Выйти
+      </button>
   </div>
 </nav>
-<router-outlet></router-outlet>
+<div class="px-2">
+  <router-outlet></router-outlet>
+</div>
+
 <!--<app-curator-schedule></app-curator-schedule>-->

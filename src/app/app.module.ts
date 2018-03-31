@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import  {HttpClientModule} from '@angular/common/http'
@@ -106,7 +107,8 @@ import { RegisterElderComponent } from './components/register-elder/register-eld
     NgbModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    NgSelectModule
+    NgSelectModule,
+    Angular2FontawesomeModule
   ],
   providers: [HttpService, MessageService, ShareService],
   bootstrap: [AppComponent]

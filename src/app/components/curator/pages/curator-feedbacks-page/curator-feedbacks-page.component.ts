@@ -3,6 +3,7 @@ import {Subscription} from "rxjs";
 import {ShareService} from "../../../../services/share.service";
 import {HttpService} from "../../../../services/http.service";
 import {Feedback} from "../../../../classes/feedback";
+import {MessageService} from "../../../../services/message.service";
 
 @Component({
   selector: 'app-curator-feedbacks-page',
@@ -17,8 +18,10 @@ export class CuratorFeedbacksPageComponent implements OnInit {
   readonlyFeedback: boolean;
 
   private showFeedbackSubscription: Subscription;
+  private updateFeedbackSubscription: Subscription;
 
-  constructor(public shareService: ShareService, private http: HttpService) {
+  constructor(public shareService: ShareService, private http: HttpService,
+              private messageService: MessageService) {
     this.allFeedbacks = [];
     this.readonlyFeedback = false;
 
@@ -26,7 +29,19 @@ export class CuratorFeedbacksPageComponent implements OnInit {
       this.feedbackToEdit = feedback;
       this.isEditingFeedback = true;
       this.readonlyFeedback = true;
-    })
+    });
+
+    this.updateFeedbackSubscription = this.shareService.updateFeedbackEvent
+      .subscribe(updatedFeedback => {
+        this.http.updateFeedback(updatedFeedback).subscribe(
+          _ => {
+            this.isEditingFeedback = false;
+            this.readonlyFeedback = false;
+            this.messageService.add('Отчет успешно обновлен!');
+          }
+        )
+      })
+
   }
 
   ngOnInit() {

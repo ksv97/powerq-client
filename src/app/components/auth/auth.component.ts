@@ -25,7 +25,6 @@ export class AuthComponent implements OnInit {
   auth() {
     this.http.logIn(this.user).subscribe(
       existingUser => {
-        this.messageService.add(`Login successful!`);
         this.shareService.currentUser = existingUser;
 
         if (this.shareService.currentUser.isAdmin == true) {

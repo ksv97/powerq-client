@@ -33,4 +33,8 @@ export class EditFeedbackComponent implements OnInit {
     this.readonly = false;
   }
 
+  updateFeedback() {
+    this.shareService.updateFeedbackEvent.emit(this.editedFeedback);
+  }
+
 }

@@ -1,6 +1,5 @@
 <div *ngIf="messageService.messages.length">
 
-  <h2>Сообщение</h2>
-  <div *ngFor='let message of messageService.messages'> {{message}} </div>
+  <div class="alert alert-success" role="alert" *ngFor='let message of messageService.messages'> {{message}} </div>
 
 </div>
