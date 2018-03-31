@@ -7,25 +7,25 @@
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <td>Косов Родион</td>
-    <td>Отчет о КЧ №1</td>
-    <td>25.05.18</td>
+  <tr class="clickable" *ngFor="let feedback of feedbacks" (click)="showFeedbackDetails(feedback)">
+    <td>{{feedback.author.firstName + ' ' +  feedback.author.surName}}</td>
+    <td>{{feedback.feedbackAnswerForm.name}}</td>
+    <td>{{feedback.dateOfWriting | date:'mediumDate':'':'ru'}}</td>
   </tr>
-  <tr>
-    <td>Антонов Максим</td>
-    <td>Отчет о КЧ №1</td>
-    <td>27.05.18</td>
-  </tr>
-  <tr>
-    <td>Сергеев Андрей</td>
-    <td>Отчет о прошедшем мероприятии</td>
-    <td>6.06.18</td>
-  </tr>
-  <tr>
-    <td>Косов Родион</td>
-    <td>Отчет о прошедшем мероприятии</td>
-    <td>8.06.18</td>
-  </tr>
+  <!--<tr>-->
+    <!--<td>Антонов Максим</td>-->
+    <!--<td>Отчет о КЧ №1</td>-->
+    <!--<td>27.05.18</td>-->
+  <!--</tr>-->
+  <!--<tr>-->
+    <!--<td>Сергеев Андрей</td>-->
+    <!--<td>Отчет о прошедшем мероприятии</td>-->
+    <!--<td>6.06.18</td>-->
+  <!--</tr>-->
+  <!--<tr>-->
+    <!--<td>Косов Родион</td>-->
+    <!--<td>Отчет о прошедшем мероприятии</td>-->
+    <!--<td>8.06.18</td>-->
+  <!--</tr>-->
   </tbody>
 </table>

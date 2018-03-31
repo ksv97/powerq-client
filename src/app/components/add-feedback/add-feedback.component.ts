@@ -62,8 +62,6 @@ export class AddFeedbackComponent implements OnInit {
   }
 
   onFeedbackFormChanged() {
-    console.warn('Selected');
-    console.log(this.feedbackForm);
     this.feedbackAnswerForm = new FeedbackAnswerForm();
     this.feedbackAnswerForm.deadlineDate = new Date(this.feedbackForm.deadlineDate);
     this.feedbackAnswerForm.name = this.feedbackForm.name;

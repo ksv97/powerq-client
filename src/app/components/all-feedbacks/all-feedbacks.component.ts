@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
+import {Feedback} from "../../classes/feedback";
+import {ShareService} from "../../services/share.service";
 
 @Component({
   selector: 'app-all-feedbacks',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllFeedbacksComponent implements OnInit {
 
-  constructor() { }
+  @Input() feedbacks: Feedback[];
+
+  constructor(private shareService: ShareService) { }
 
   ngOnInit() {
+  }
+
+  showFeedbackDetails(feedback: Feedback) {
+    this.shareService.showFeedbackDetails(feedback);
   }
 
 }

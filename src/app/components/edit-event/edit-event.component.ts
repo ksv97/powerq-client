@@ -12,6 +12,7 @@ import {HttpService} from "../../services/http.service";
 export class EditEventComponent implements OnInit {
 
   @Input() editEvent: Event;
+  @Input() readonly: boolean
   private editedEvent: Event;
 
   model: NgbDateStruct;
@@ -19,6 +20,7 @@ export class EditEventComponent implements OnInit {
 
   constructor(public shareService: ShareService) {
     this.editedEvent = new Event(this.shareService.currentUser);
+    this.readonly = false;
   }
 
   ngOnInit() {

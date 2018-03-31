@@ -73,7 +73,6 @@ export class CuratorScheduleComponent implements OnInit {
       events =>
       {
         this.curatorEvents = events;
-        console.warn(events);
       }
     )
   }

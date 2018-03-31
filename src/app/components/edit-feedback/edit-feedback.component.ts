@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
+import {Feedback} from "../../classes/feedback";
+import {FeedbackForm} from "../../classes/feedback-form";
+import {FeedbackAnswerForm} from "../../classes/feedback-answer-form";
+import {FeedbackAnswer} from "../../classes/feedback-answer";
+import {HttpService} from "../../services/http.service";
+import {ShareService} from "../../services/share.service";
 
 @Component({
   selector: 'app-edit-feedback',
@@ -7,19 +13,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditFeedbackComponent implements OnInit {
 
-  questions: string[];
-  answers: string[];
-  currentRate: number;
+  @Input() feedbackToEdit: Feedback;
+  @Input() readonly: boolean;
+  private editedFeedback: Feedback;
 
-  constructor() {
-    this.questions = ["Как было общее впечатление о вас?", "Что проводили и как?", "Какую оценку бы поставили сами себе?"];
-    this.answers = ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla non nunc et hendrerit. Vivamus sed iaculis turpis. Fusce dictum et erat id imperdiet. Sed massa lacus, lacinia quis dictum in, volutpat eu elit. Morbi eget facilisis sapien. Nulla et ante sit amet nunc tempor sodales. Curabitur dictum leo vel felis faucibus, et hendrerit lacus accumsan. Fu",
-    "Ut non gravida eros, vitae gravida velit. Vestibulum nunc dui, auctor ac augue sed, egestas venenatis erat. Suspendisse eu sagittis augue. Integer at lobortis elit, eget gravida eros. Pellentesque venenatis dictum est, sed pellentesque leo. In quis tincidunt metus, quis rhoncus diam. Aenean mollis semper pellentesque. Proin",
-    "n placerat dolor sed imperdiet sodales. Etiam congue pellentesque massa at auctor. Suspendisse condimentum, turpis efficitur eleifend tincidunt, metus enim accumsan nibh, vitae posuere libero enim vi"]
-    this.currentRate = 5;
+  feedbackAnswerForm: FeedbackAnswerForm; // for editing
+
+  constructor(private http: HttpService, public shareService: ShareService) {
   }
 
   ngOnInit() {
+    this.editedFeedback = new Feedback(this.feedbackToEdit.event, this.feedbackToEdit.author, this.feedbackToEdit.feedbackAnswerForm);
+    this.editedFeedback.dateOfWriting = new Date(this.feedbackToEdit.dateOfWriting);
+    this.editedFeedback.event.date = new Date(this.feedbackToEdit.event.date);
+    this.editedFeedback.mark = this.feedbackToEdit.mark;
+  }
+
+  toggleEditor() {
+    this.readonly = false;
   }
 
 }

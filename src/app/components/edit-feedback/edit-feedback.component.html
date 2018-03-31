@@ -1,14 +1,14 @@
-<form>
+<div>
   <div class="card">
     <div class="card-header">
       <div class="row">
         <div class="col-lg-8">
-          <h5>Отчет о КЧ №1</h5>
+          <h5>{{editedFeedback.feedbackAnswerForm.name}}</h5>
         </div>
         <div class="col-lg-3">
-          <button class="btn btn-outline-primary">
-            Редактировать
-          </button>
+          <div *ngIf="readonly && shareService.currentUser.id === editedFeedback.author.id">
+            <button class="btn btn-outline-primary" (click)="toggleEditor()">Редактировать</button>
+          </div>
         </div>
         <div class="col-lg-1">
           <button type="button" class="close" aria-label="Close">
@@ -29,7 +29,7 @@
           Название:
         </div>
         <div class="col-lg-8 col-sm-6">
-          Провести кураторский час с группой 1-41
+          {{editedFeedback.event.title}}
         </div>
       </div>
       <div class="row">
@@ -37,7 +37,7 @@
           Дата и время:
         </div>
         <div class="col-lg-8 col-sm-6">
-          25 марта в 14:00
+          {{editedFeedback.event.date | date:'medium':'':'ru'}}
         </div>
       </div>
       <div class="row">
@@ -45,7 +45,7 @@
           Автор:
         </div>
         <div class="col-lg-8 col-sm-6">
-          Косов Родион
+          {{editedFeedback.author.firstName + ' ' + editedFeedback.author.surName}}
         </div>
       </div>
 
@@ -58,22 +58,27 @@
       </div>
 
       <div class="form-group row">
-        <label for="select" class="col-lg-4 col-sm-6 col-form-label font-weight-bold">
+        <div class="col-lg-4 col-sm-6 font-weight-bold">
           Форма отчета:
-        </label>
+        </div>
         <div class="col-lg-8 col-sm-6">
-          <select id="select" readonly="true" class="form-control">
-            <option>Отчет о 1 кч</option>
-            <option>Отчет о 2 кч</option>
-            <option>...</option>
-          </select>
+          <div>
+            {{editedFeedback.feedbackAnswerForm.name}}
+          </div>
+          <!--<div *ngIf="!readonly">-->
+            <!--<div class="col-lg-8 col-sm-6">-->
+              <!--<select [(ngModel)]="usedFeedbackForm" (select)="onFeedbackFormChanged()" (change)="onFeedbackFormChanged()" id="select" class="form-control">-->
+                <!--<option *ngFor="let form of feedbackForms" [ngValue]="form">{{form.name}}</option>-->
+              <!--</select>-->
+            <!--</div>-->
+          <!--</div>-->
         </div>
       </div>
 
-      <div class="row" *ngFor="let question of questions">
+      <div class="row" *ngFor="let feedbackAnswer of editedFeedback.feedbackAnswerForm.feedbackAnswers">
         <div class="col form-group">
-          <label for="feedback-answer" class="font-weight-bold">{{question}}</label>
-          <textarea readonly="true" class="form-control" id="feedback-answer" rows="3">awfawfawfwaf</textarea>
+          <label for="feedback-answer" class="font-weight-bold">{{feedbackAnswer.question}}</label>
+          <textarea [readonly]="readonly" [(ngModel)]="feedbackAnswer.answer" class="form-control" id="feedback-answer" rows="3"></textarea>
         </div>
       </div>
 
@@ -82,7 +87,7 @@
           Оценка:
         </div>
         <div class="col-lg-8 col-sm-6">
-          <ngb-rating [(rate)]="currentRate"></ngb-rating>
+          <ngb-rating [(rate)]="editedFeedback.mark" [readonly]="readonly"></ngb-rating>
         </div>
       </div>
 
@@ -90,7 +95,7 @@
     </div>
 
     <div class="card-footer">
-      <div>
+      <div *ngIf="!readonly">
         <button class="btn btn-success">Сохранить</button>
         <button class="btn btn-danger">Отмена</button>
       </div>
@@ -99,4 +104,4 @@
 
 
 
-</form>
+</div>

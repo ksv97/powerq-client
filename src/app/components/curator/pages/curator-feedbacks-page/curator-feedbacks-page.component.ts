@@ -11,22 +11,38 @@ import {Feedback} from "../../../../classes/feedback";
 })
 export class CuratorFeedbacksPageComponent implements OnInit {
 
-  feedbacks: Feedback[];
+  allFeedbacks: Feedback[];
+  feedbackToEdit: Feedback;
+  isEditingFeedback: boolean;
+  readonlyFeedback: boolean;
 
-  private saveFeedbackSubscription: Subscription;
+  private showFeedbackSubscription: Subscription;
 
   constructor(public shareService: ShareService, private http: HttpService) {
-    this.saveFeedbackSubscription = this.shareService.saveFeedbackEvent.subscribe(feedback => {
-      this.feedbacks.push(feedback);
+    this.allFeedbacks = [];
+    this.readonlyFeedback = false;
+
+    this.showFeedbackSubscription = this.shareService.showFeedbackEvent.subscribe(feedback => {
+      this.feedbackToEdit = feedback;
+      this.isEditingFeedback = true;
+      this.readonlyFeedback = true;
     })
   }
 
   ngOnInit() {
-
+    this.http.getAllFeedbacks().subscribe(
+      feedbacksFromDb => {
+        for (let fbFromDb of feedbacksFromDb) {
+          let feedback = fbFromDb;
+          feedback.dateOfWriting = new Date(fbFromDb.dateOfWriting);
+          this.allFeedbacks.push(feedback);
+        }
+      }
+    )
   }
 
   ngOnDestroy () {
-    this.saveFeedbackSubscription.unsubscribe();
+    this.showFeedbackSubscription.unsubscribe();
   }
 
 }
