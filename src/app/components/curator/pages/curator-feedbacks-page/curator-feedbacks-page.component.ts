@@ -19,6 +19,7 @@ export class CuratorFeedbacksPageComponent implements OnInit {
 
   private showFeedbackSubscription: Subscription;
   private updateFeedbackSubscription: Subscription;
+  private deleteFeedbackSubscription: Subscription;
 
   constructor(public shareService: ShareService, private http: HttpService,
               private messageService: MessageService) {
@@ -40,8 +41,26 @@ export class CuratorFeedbacksPageComponent implements OnInit {
             this.messageService.add('Отчет успешно обновлен!');
           }
         )
-      })
+      });
 
+    this.deleteFeedbackSubscription = this.shareService.deleteFeedbackEvent.subscribe(
+      dataForFeedbackDeletion => {
+        this.http.deleteFeedback(dataForFeedbackDeletion.eventId, dataForFeedbackDeletion.userId).subscribe(
+          result => {
+            let feedbackToDelete: Feedback = this.allFeedbacks
+              .filter(e => e.author.id == dataForFeedbackDeletion.authorId
+              && e.event.id == dataForFeedbackDeletion.eventId)[0];
+            if (feedbackToDelete) {
+              let index: number = this.allFeedbacks.indexOf(feedbackToDelete);
+              if (index > -1) {
+                this.allFeedbacks.splice(index, 1);
+                this.messageService.add('Отчет успешно удален!');
+              }
+            }
+          }
+        )
+      }
+    )
   }
 
   ngOnInit() {

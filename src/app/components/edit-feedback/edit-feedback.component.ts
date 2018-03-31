@@ -5,6 +5,7 @@ import {FeedbackAnswerForm} from "../../classes/feedback-answer-form";
 import {FeedbackAnswer} from "../../classes/feedback-answer";
 import {HttpService} from "../../services/http.service";
 import {ShareService} from "../../services/share.service";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-edit-feedback',
@@ -19,7 +20,8 @@ export class EditFeedbackComponent implements OnInit {
 
   feedbackAnswerForm: FeedbackAnswerForm; // for editing
 
-  constructor(private http: HttpService, public shareService: ShareService) {
+  constructor(private http: HttpService, public shareService: ShareService,
+              private modalService: NgbModal) {
   }
 
   ngOnInit() {
@@ -35,6 +37,18 @@ export class EditFeedbackComponent implements OnInit {
 
   updateFeedback() {
     this.shareService.updateFeedbackEvent.emit(this.editedFeedback);
+  }
+
+  deleteFeedback() {
+    let dataForFeedbackDeleting = {
+      eventId: this.editedFeedback.event.id,
+      userId: this.editedFeedback.author.id
+    };
+    this.shareService.deleteFeedbackEvent.emit(dataForFeedbackDeleting);
+  }
+
+  openModal(content) {
+    this.modalService.open(content);
   }
 
 }

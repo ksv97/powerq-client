@@ -1,3 +1,19 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Подтверждение удаления</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Вы действительно хотите удалить элемент "<b>{{feedbackToEdit.feedbackAnswerForm.name}}</b>"?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-danger" (click)="c('Close click'); deleteFeedback()">Удалить</button>
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Отмена</button>
+  </div>
+</ng-template>
+
 <div>
   <div class="card">
     <div class="card-header">
@@ -14,7 +30,7 @@
         </div>
         <div class="col-lg-1">
           <div *ngIf="readonly && shareService.currentUser.id === editedFeedback.author.id && editedFeedback.mark == 0">
-            <button type="button" class="btn btn-danger">
+            <button type="button" class="btn btn-danger" (click)="openModal(content)">
                 <fa [name]="'trash'" [size]="1"></fa>
             </button>
           </div>

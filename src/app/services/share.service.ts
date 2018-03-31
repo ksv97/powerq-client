@@ -15,6 +15,7 @@ export class ShareService {
   public saveFeedbackEvent: EventEmitter<Feedback> = new EventEmitter();
   public showFeedbackEvent: EventEmitter<Feedback> = new EventEmitter();
   public updateFeedbackEvent: EventEmitter<Feedback> = new EventEmitter();
+  public deleteFeedbackEvent: EventEmitter<{eventId: number, userId: number}> = new EventEmitter();
   public editEventEvent: EventEmitter<Event> = new EventEmitter<Event>();
   public confirmEditEvent: EventEmitter<Event> = new EventEmitter<Event>();
   public deleteEventEvent: EventEmitter<number> = new EventEmitter<number>();
