@@ -7,11 +7,14 @@ export class Feedback {
   mark: number;
   feedbackAnswerForm: FeedbackAnswerForm;
   event: Event;
+  author: User;
 
-  constructor(eventAuthor: User) {
+  constructor(eventForFeedback: Event, author: User, feedbackAnswerForm: FeedbackAnswerForm) {
     this.dateOfWriting = new Date();
     // this.id = -1;
-    this.feedbackAnswerForm = new FeedbackAnswerForm();
-    this.event = new Event(eventAuthor);
+    this.feedbackAnswerForm = feedbackAnswerForm;
+    this.event = eventForFeedback;
+    this.author = author;
+    this.mark = 0;
   }
 }

@@ -6,6 +6,7 @@ export class FeedbackAnswerForm {
   feedbackAnswers: FeedbackAnswer[];
 
   constructor() {
+    this.id = -1;
     this.deadlineDate = new Date();
     this.feedbackAnswers = [];
   }

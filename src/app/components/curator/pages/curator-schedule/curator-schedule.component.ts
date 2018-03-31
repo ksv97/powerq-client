@@ -3,6 +3,7 @@ import {HttpService} from "../../../../services/http.service";
 import  {Event} from '../../../../classes/event'
 import {ShareService} from "../../../../services/share.service";
 import {Subscription} from "rxjs";
+import {MessageService} from "../../../../services/message.service";
 
 @Component({
   selector: 'app-curator-schedule',
@@ -25,15 +26,20 @@ export class CuratorScheduleComponent implements OnInit {
   private cancelEditEventSubscription: Subscription;
   // private deleteEventSubscription: Subscription;
 
-  constructor(private http: HttpService, public shareService: ShareService) {
+  constructor(private http: HttpService, public shareService: ShareService,
+              private messageService: MessageService) {
     this.addFeedbackSubscription = this.shareService.addFeedbackEvent.subscribe( eventForFeedback => {
       this.eventForFeedback = eventForFeedback;
       this.isAddingFeedback = true;
     });
 
     this.saveFeedbackSubscription = this.shareService.saveFeedbackEvent.subscribe( feedback => {
-      this.isAddingFeedback = false;
-      console.log(feedback);
+      this.http.createFeedback(feedback).subscribe(
+        success => {
+          this.isAddingFeedback = false;
+          this.messageService.add('Отчет успешно добавлен!');
+        }
+      )
     });
 
     this.editEventSubscription = this.shareService.editEventEvent.subscribe( eventToEdit => {

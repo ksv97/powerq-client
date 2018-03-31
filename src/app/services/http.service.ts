@@ -12,6 +12,7 @@ import {Observable} from "rxjs";
 import {of} from "rxjs/observable/of";
 import {FeedbackForm} from "../classes/feedback-form";
 import {ElderCurator} from "../classes/elder-curator";
+import {Feedback} from "../classes/feedback";
 
 
 @Injectable()
@@ -32,6 +33,14 @@ export class HttpService {
     return this.http.post<any>(url, JSON.stringify(event), this.httpOptions)
       .pipe(
         catchError(this.handleError<any>('createEvent', null))
+      );
+  }
+
+  createFeedback (feedback: Feedback): Observable<Feedback> {
+    let url = this.baseUrl + 'feedback/create';
+    return this.http.post<any>(url, JSON.stringify(feedback), this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('createFeedback', null))
       );
   }
 

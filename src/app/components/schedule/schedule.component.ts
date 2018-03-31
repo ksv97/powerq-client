@@ -18,6 +18,7 @@ export class ScheduleComponent implements OnInit {
 
   private confirmEditEventSubscription: Subscription;
   private deleteEventSubscription: Subscription;
+  private saveFeedbackSubscription: Subscription;
 
   constructor(private shareService: ShareService, private http: HttpService,
               private messageService: MessageService) {
@@ -28,6 +29,11 @@ export class ScheduleComponent implements OnInit {
 
     this.deleteEventSubscription = this.shareService.deleteEventEvent
       .subscribe(deletedEventId => this.deleteEvent(deletedEventId))
+
+    this.saveFeedbackSubscription = this.shareService.saveFeedbackEvent
+      .subscribe(feedback => {
+       this.deleteEventFromArray(feedback.event.id);
+      });
   }
 
   ngOnInit() {
@@ -41,15 +47,19 @@ export class ScheduleComponent implements OnInit {
   deleteEvent(deletedEventId: number) {
     this.http.deleteEvent(deletedEventId).subscribe(
       result => {
-        this.messageService.add('Deleted successfully!');
-          let eventToDelete: Event = this.events.filter(i => i.id == deletedEventId)[0];
-          if (eventToDelete) {
-            let indexToDelete: number = this.events.indexOf(eventToDelete);
-            if (indexToDelete > -1) {
-             this.events.splice(indexToDelete, 1);
-            }
-          }
+        this.messageService.add('Мероприятие успешно удалено!');
+        this.deleteEventFromArray(deletedEventId);
       })
+  }
+
+  deleteEventFromArray (eventId: number) {
+    let eventToDelete: Event = this.events.filter(i => i.id == eventId)[0];
+    if (eventToDelete) {
+      let indexToDelete: number = this.events.indexOf(eventToDelete);
+      if (indexToDelete > -1) {
+        this.events.splice(indexToDelete, 1);
+      }
+    }
   }
 
   editEvent (editedEvent: Event) {
@@ -61,7 +71,7 @@ export class ScheduleComponent implements OnInit {
           let indexOfOldEvent = this.events.indexOf(eventToSubstitute);
           if (indexOfOldEvent > -1) {
             this.events[indexOfOldEvent] = editedEvent;
-            this.messageService.add('Event updated successfuly!');
+            this.messageService.add('Мероприятие успешно изменено!');
           }
           else this.messageService.add('Event with id not found');
 
