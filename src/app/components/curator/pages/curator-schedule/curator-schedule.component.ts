@@ -4,6 +4,8 @@ import  {Event} from '../../../../classes/event'
 import {ShareService} from "../../../../services/share.service";
 import {Subscription} from "rxjs";
 import {MessageService} from "../../../../services/message.service";
+import {User} from "../../../../classes/user";
+import {Actions} from "../../../../enums/Actions";
 
 @Component({
   selector: 'app-curator-schedule',
@@ -12,12 +14,12 @@ import {MessageService} from "../../../../services/message.service";
 })
 export class CuratorScheduleComponent implements OnInit {
 
+  public actions: Actions = Actions;
+  currentAction: Actions = Actions.None;
+  usersForEvent: User[] = [];
   eventForFeedback: Event;
   eventForEditing: Event;
   curatorEvents: Event[] = [];
-  isAddingEvent: boolean = false;
-  isAddingFeedback: boolean = false;
-  isEditingEvent: boolean = false;
 
   private addFeedbackSubscription: Subscription;
   private saveFeedbackSubscription: Subscription;
@@ -29,13 +31,14 @@ export class CuratorScheduleComponent implements OnInit {
               private messageService: MessageService) {
     this.addFeedbackSubscription = this.shareService.addFeedbackEvent.subscribe( eventForFeedback => {
       this.eventForFeedback = eventForFeedback;
-      this.isAddingFeedback = true;
+      this.usersForEvent.push(this.shareService.currentUser);
+      this.currentAction = Actions.AddFeedback;
     });
 
     this.saveFeedbackSubscription = this.shareService.saveFeedbackEvent.subscribe( feedback => {
       this.http.createFeedback(feedback).subscribe(
         success => {
-          this.isAddingFeedback = false;
+          this.currentAction = Actions.None;
           this.messageService.add('Отчет успешно добавлен!');
         }
       )
@@ -43,15 +46,15 @@ export class CuratorScheduleComponent implements OnInit {
 
     this.editEventSubscription = this.shareService.editEventEvent.subscribe( eventToEdit => {
       this.eventForEditing = eventToEdit;
-      this.isEditingEvent = true;
+      this.currentAction = Actions.EditEvent
     });
 
     this.confirmEditEventSubscription = this.shareService.confirmEditEvent.subscribe( editedEvent => {
-      this.isEditingEvent = false;
+      this.currentAction = Actions.None;
     });
 
     this.cancelEditEventSubscription = this.shareService.cancelEditEvent.subscribe(
-      res => this.isEditingEvent = false
+      res => this.currentAction = Actions.None
     );
   }
 
@@ -74,7 +77,7 @@ export class CuratorScheduleComponent implements OnInit {
 
   saveEvent(newEvent: Event) {
     this.curatorEvents.push(newEvent);
-    this.isAddingEvent = false;
+    this.currentAction = Actions.None;
   }
 
 }

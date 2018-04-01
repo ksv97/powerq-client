@@ -54,5 +54,8 @@
     <div *ngIf="activeAction == actions.ShowProfile">
       <app-curator-profile [curator]="curatorForProfile"></app-curator-profile>
     </div>
+    <div *ngIf="activeAction == actions.AddDeadline">
+      <app-add-event></app-add-event>
+    </div>
   </div>
 </div>

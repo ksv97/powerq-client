@@ -1,9 +1,10 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import {NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
 import {Event} from '../../classes/event'
 import {HttpService} from "../../services/http.service";
 import {ShareService} from "../../services/share.service";
 import {MessageService} from "../../services/message.service";
+import {User} from "../../classes/user";
 
 @Component({
   selector: 'app-add-event',
@@ -12,6 +13,7 @@ import {MessageService} from "../../services/message.service";
 })
 export class AddEventComponent implements OnInit {
 
+  @Input() users: User[];
   @Output() onEventSaved = new EventEmitter<Event>();
   @Output() onEventCanceled = new EventEmitter();
   newEvent: Event;
@@ -22,10 +24,12 @@ export class AddEventComponent implements OnInit {
   constructor(private http: HttpService, private shareService: ShareService,
               private messageService: MessageService) {
     this.newEvent = new Event(this.shareService.currentUser);
-    this.newEvent.users.push(this.shareService.currentUser);
   }
 
   ngOnInit() {
+    for (let user of this.users) {
+      this.newEvent.users.push(user);
+    }
   }
 
   saveEvent() {
