@@ -48,13 +48,15 @@ export class CuratorFeedbacksPageComponent implements OnInit {
         this.http.deleteFeedback(dataForFeedbackDeletion.eventId, dataForFeedbackDeletion.userId).subscribe(
           result => {
             let feedbackToDelete: Feedback = this.allFeedbacks
-              .filter(e => e.author.id == dataForFeedbackDeletion.authorId
+              .filter(e => e.author.id == dataForFeedbackDeletion.userId
               && e.event.id == dataForFeedbackDeletion.eventId)[0];
             if (feedbackToDelete) {
               let index: number = this.allFeedbacks.indexOf(feedbackToDelete);
               if (index > -1) {
                 this.allFeedbacks.splice(index, 1);
                 this.messageService.add('Отчет успешно удален!');
+                this.isEditingFeedback = false;
+                this.readonlyFeedback = false;
               }
             }
           }
@@ -77,6 +79,8 @@ export class CuratorFeedbacksPageComponent implements OnInit {
 
   ngOnDestroy () {
     this.showFeedbackSubscription.unsubscribe();
+    this.deleteFeedbackSubscription.unsubscribe();
+    this.updateFeedbackSubscription.unsubscribe();
   }
 
 }
