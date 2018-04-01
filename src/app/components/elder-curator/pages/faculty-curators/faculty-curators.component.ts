@@ -4,6 +4,7 @@ import {HttpService} from "../../../../services/http.service";
 import {ShareService} from "../../../../services/share.service";
 import {Actions} from "../../../../enums/Actions"
 import {User} from "../../../../classes/user";
+import {Event} from "../../../../classes/event";
 
 @Component({
   selector: 'app-faculty-curators',
@@ -72,7 +73,26 @@ export class FacultyCuratorsComponent implements OnInit {
     this.http.getUserDeadlines(curator.user.id).subscribe(
       events => this.curatorSchedule = events
     );
+
     this.activeAction = Actions.ShowCuratorSchedule;
+  }
+
+  addEventForWholeFaculty() {
+    this.usersAssignedToEvent = [];
+    for (let curator of this.facultyCurators) {
+      this.usersAssignedToEvent.push(curator.user);
+    }
+    this.newEventIsDeadline = false;
+    this.activeAction = Actions.AddEvent;
+  }
+
+  addDeadlineForWholeFaculty() {
+    this.usersAssignedToEvent = [];
+    for (let curator of this.facultyCurators) {
+      this.usersAssignedToEvent.push(curator.user);
+    }
+    this.newEventIsDeadline = true;
+    this.activeAction = Actions.AddEvent;
   }
 
 }
