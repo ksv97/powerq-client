@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, SimpleChange, SimpleChanges} from '@angular/core';
 import {Feedback} from "../../classes/feedback";
 import {FeedbackForm} from "../../classes/feedback-form";
 import {FeedbackAnswerForm} from "../../classes/feedback-answer-form";
@@ -25,10 +25,19 @@ export class EditFeedbackComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.editedFeedback = new Feedback(this.feedbackToEdit.event, this.feedbackToEdit.author, this.feedbackToEdit.feedbackAnswerForm);
-    this.editedFeedback.dateOfWriting = new Date(this.feedbackToEdit.dateOfWriting);
-    this.editedFeedback.event.date = new Date(this.feedbackToEdit.event.date);
-    this.editedFeedback.mark = this.feedbackToEdit.mark;
+    this.initializeEditedFeedback(this.feedbackToEdit);
+  }
+
+  ngOnChanges (changes:{feedbackToEdit: SimpleChange} ) {
+    this.initializeEditedFeedback(changes.feedbackToEdit.currentValue);
+  }
+
+
+  initializeEditedFeedback (feedback: Feedback) {
+    this.editedFeedback = new Feedback(feedback.event, feedback.author, feedback.feedbackAnswerForm);
+    this.editedFeedback.dateOfWriting = new Date(feedback.dateOfWriting);
+    this.editedFeedback.event.date = new Date(feedback.event.date);
+    this.editedFeedback.mark = feedback.mark;
   }
 
   toggleEditor() {

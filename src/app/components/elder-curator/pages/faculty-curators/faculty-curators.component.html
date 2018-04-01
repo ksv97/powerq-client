@@ -28,33 +28,16 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>Максимов Андрей</td>
-          <td>26</td>
+        <tr *ngFor="let curator of facultyCurators" (click)="watchProfile(curator)">
+          <td>{{curator.user.firstName + ' ' + curator.user.surName}}</td>
+          <td>{{curator.mark}}</td>
           <td>
             <div ngbDropdown class="d-inline-block">
-              <button class="btn btn-outline-primary" id="user1-actions" ngbDropdownToggle>Действия</button>
-              <div ngbDropdownMenu aria-labelledby="user1-actions">
+              <button class="btn btn-outline-primary" [attr.id]="curator.id + 'actions'" ngbDropdownToggle>Действия</button>
+              <div ngbDropdownMenu [attr.aria-labelledby]="curator.id + 'actions'">
                 <button class="dropdown-item">Поставить дедлайн</button>
                 <button class="dropdown-item">Поставить мероприятие</button>
-                <button class="dropdown-item">Посмотреть отчеты</button>
-                <button class="dropdown-item">Посмотреть профиль</button>
-                <button class="dropdown-item">Посмотреть расписание</button>
-                <button class="dropdown-item">Посмотреть дедлайны</button>
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>Антонов Максим</td>
-          <td>18</td>
-          <td>
-            <div ngbDropdown class="d-inline-block">
-              <button class="btn btn-outline-primary" id="user2-actions" ngbDropdownToggle>Действия</button>
-              <div ngbDropdownMenu aria-labelledby="user2-actions">
-                <button class="dropdown-item">Поставить дедлайн</button>
-                <button class="dropdown-item">Поставить мероприятие</button>
-                <button class="dropdown-item">Посмотреть отчеты</button>
+                <!--<button class="dropdown-item">Посмотреть отчеты</button>-->
                 <button class="dropdown-item">Посмотреть профиль</button>
                 <button class="dropdown-item">Посмотреть расписание</button>
                 <button class="dropdown-item">Посмотреть дедлайны</button>
@@ -68,6 +51,8 @@
 
   </div>
   <div class="col-lg-6 col-md-12">
-    <app-curator-profile></app-curator-profile>
+    <div *ngIf="activeAction == Actions.ShowProfile">
+      <app-curator-profile></app-curator-profile>
+    </div>
   </div>
 </div>

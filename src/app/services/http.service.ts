@@ -188,7 +188,14 @@ export class HttpService {
       .pipe(
         catchError(this.handleError<ElderCurator>('getElderCurator',null))
       );
+  }
 
+  getCuratorsFromFaculty(facultyId: number): Observable<Curator[]> {
+    let url = this.baseUrl + `users/curators?facultyId=${facultyId}`;
+    return this.http.get<Curator[]>(url, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<Curator[]>('getCurator',[]))
+      );
   }
 
   /**
