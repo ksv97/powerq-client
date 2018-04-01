@@ -40,7 +40,7 @@ export class AddEventComponent implements OnInit {
     this.newEvent.date.setHours(this.time.hour, this.time.minute);
     this.http.createEvent(this.newEvent).subscribe(
       eventId => {
-        this.messageService.add('Event created successfully')
+        this.messageService.add('Мероприятие успешно добавлено')
         this.newEvent.id = eventId;
       }
     );

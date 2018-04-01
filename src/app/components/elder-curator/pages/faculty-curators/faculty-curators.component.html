@@ -28,19 +28,20 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let curator of facultyCurators" (click)="watchProfile(curator)">
+        <tr *ngFor="let curator of facultyCurators" >
           <td>{{curator.user.firstName + ' ' + curator.user.surName}}</td>
           <td>{{curator.mark}}</td>
           <td>
             <div ngbDropdown class="d-inline-block">
               <button class="btn btn-outline-primary" [attr.id]="curator.id + 'actions'" ngbDropdownToggle>Действия</button>
               <div ngbDropdownMenu [attr.aria-labelledby]="curator.id + 'actions'">
-                <button class="dropdown-item">Поставить дедлайн</button>
-                <button class="dropdown-item">Поставить мероприятие</button>
-                <!--<button class="dropdown-item">Посмотреть отчеты</button>-->
-                <button class="dropdown-item">Посмотреть профиль</button>
+                <button class="dropdown-item" (click)="watchProfile(curator)">Посмотреть профиль</button>
                 <button class="dropdown-item">Посмотреть расписание</button>
                 <button class="dropdown-item">Посмотреть дедлайны</button>
+                <hr>
+                <button class="dropdown-item">Поставить дедлайн</button>
+                <button class="dropdown-item" (click)="addEventToCurator(curator)">Добавить мероприятие</button>
+                <!--<button class="dropdown-item">Посмотреть отчеты</button>-->
               </div>
             </div>
           </td>
@@ -54,8 +55,8 @@
     <div *ngIf="activeAction == actions.ShowProfile">
       <app-curator-profile [curator]="curatorForProfile"></app-curator-profile>
     </div>
-    <div *ngIf="activeAction == actions.AddDeadline">
-      <app-add-event></app-add-event>
+    <div *ngIf="activeAction == actions.AddEvent">
+      <app-add-event [users]="usersAssignedToEvent" (onEventSaved)="saveEvent()" (onEventCanceled)="cancelEvent()"></app-add-event>
     </div>
   </div>
 </div>

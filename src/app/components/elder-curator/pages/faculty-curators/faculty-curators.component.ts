@@ -3,6 +3,7 @@ import {Curator} from "../../../../classes/curator";
 import {HttpService} from "../../../../services/http.service";
 import {ShareService} from "../../../../services/share.service";
 import {Actions} from "../../../../enums/Actions"
+import {User} from "../../../../classes/user";
 
 @Component({
   selector: 'app-faculty-curators',
@@ -11,6 +12,7 @@ import {Actions} from "../../../../enums/Actions"
 })
 export class FacultyCuratorsComponent implements OnInit {
 
+  usersAssignedToEvent: User[] = [];
   public actions = Actions;
   activeAction: Actions = Actions.None;
   facultyCurators: Curator[] = [];
@@ -27,8 +29,24 @@ export class FacultyCuratorsComponent implements OnInit {
   }
 
   watchProfile(curator: Curator) {
+    console.log('showProfile');
     this.curatorForProfile = curator;
     this.activeAction = Actions.ShowProfile;
+  }
+
+  addEventToCurator(curator: Curator) {
+    console.log(curator);
+    this.usersAssignedToEvent = [];
+    this.usersAssignedToEvent.push(curator.user);
+    this.activeAction = Actions.AddEvent;
+  }
+
+  cancelEvent() {
+    this.activeAction = Actions.None;
+  }
+
+  saveEvent() {
+    this.activeAction = Actions.None;
   }
 
 }
