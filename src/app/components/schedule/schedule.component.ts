@@ -47,7 +47,7 @@ export class ScheduleComponent implements OnInit {
   deleteEvent(deletedEventId: number) {
     this.http.deleteEvent(deletedEventId).subscribe(
       result => {
-        this.messageService.add('Мероприятие успешно удалено!');
+        this.messageService.add('Удаление прошло успешно!');
         this.deleteEventFromArray(deletedEventId);
       })
   }

@@ -13,6 +13,7 @@ import {User} from "../../classes/user";
 })
 export class AddEventComponent implements OnInit {
 
+  @Input() isDeadline: boolean;
   @Input() users: User[];
   @Output() onEventSaved = new EventEmitter<Event>();
   @Output() onEventCanceled = new EventEmitter();
@@ -30,6 +31,7 @@ export class AddEventComponent implements OnInit {
     for (let user of this.users) {
       this.newEvent.users.push(user);
     }
+    this.newEvent.isDeadline = this.isDeadline;
   }
 
   saveEvent() {
@@ -40,7 +42,8 @@ export class AddEventComponent implements OnInit {
     this.newEvent.date.setHours(this.time.hour, this.time.minute);
     this.http.createEvent(this.newEvent).subscribe(
       eventId => {
-        this.messageService.add('Мероприятие успешно добавлено')
+        let message = this.newEvent.isDeadline ? 'Дедлайн успешно добавлен' : 'Мероприятие успешно добавлено';
+        this.messageService.add(message);
         this.newEvent.id = eventId;
       }
     );

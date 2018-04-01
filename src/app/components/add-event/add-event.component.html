@@ -1,7 +1,7 @@
 <div>
-  <div class="card">
-    <div class="card-header">
-      <h5>Новое мероприятие</h5>
+  <div class="card" >
+    <div class="card-header" [class.bg-warning]="newEvent.isDeadline" [class.text-white]="newEvent.isDeadline">
+      <h5>{{newEvent.isDeadline? 'Новый дедлайн' : 'Новое мероприятие'}}</h5>
     </div>
     <div class="card-body" >
       <div class="form-group row">
@@ -15,7 +15,7 @@
 
       <div class="row mt-2">
         <div class="col">
-          <span>Дата и время мероприятия</span>
+          <span>Дата и время {{newEvent.isDeadline? 'дедлайна' : 'мероприятия'}}</span>
         </div>
       </div>
 

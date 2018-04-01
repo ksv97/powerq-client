@@ -20,7 +20,7 @@
   </div>
   <div class="col-lg-6 col-md-12">
     <div *ngIf="currentAction == actions.AddEvent">
-      <app-add-event [users]="usersForEvent" (onEventSaved)="saveEvent($event)" (onEventCanceled)="currentAction = actions.None" ></app-add-event>
+      <app-add-event [isDeadline]="false" [users]="usersForEvent" (onEventSaved)="saveEvent($event)" (onEventCanceled)="currentAction = actions.None" ></app-add-event>
     </div>
 
     <div *ngIf="currentAction == actions.AddFeedback">

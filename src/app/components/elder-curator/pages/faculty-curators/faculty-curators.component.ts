@@ -12,6 +12,7 @@ import {User} from "../../../../classes/user";
 })
 export class FacultyCuratorsComponent implements OnInit {
 
+  newEventIsDeadline: boolean = false;
   usersAssignedToEvent: User[] = [];
   public actions = Actions;
   activeAction: Actions = Actions.None;
@@ -35,10 +36,20 @@ export class FacultyCuratorsComponent implements OnInit {
   }
 
   addEventToCurator(curator: Curator) {
-    console.log(curator);
+    this.assignCuratorToUsersForNewEvent(curator);
+    this.newEventIsDeadline = false;
+    this.activeAction = Actions.AddEvent;
+  }
+
+  addDeadlineToCurator(curator: Curator) {
+    this.assignCuratorToUsersForNewEvent(curator);
+    this.newEventIsDeadline = true;
+    this.activeAction = Actions.AddDeadline;
+  }
+
+  assignCuratorToUsersForNewEvent(curator: Curator) {
     this.usersAssignedToEvent = [];
     this.usersAssignedToEvent.push(curator.user);
-    this.activeAction = Actions.AddEvent;
   }
 
   cancelEvent() {
