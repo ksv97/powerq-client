@@ -51,8 +51,8 @@
 
   </div>
   <div class="col-lg-6 col-md-12">
-    <div *ngIf="activeAction == Actions.ShowProfile">
-      <app-curator-profile></app-curator-profile>
+    <div *ngIf="activeAction == actions.ShowProfile">
+      <app-curator-profile [curator]="curatorForProfile"></app-curator-profile>
     </div>
   </div>
 </div>

@@ -11,6 +11,7 @@ import {Actions} from "../../../../enums/Actions"
 })
 export class FacultyCuratorsComponent implements OnInit {
 
+  public actions = Actions;
   activeAction: Actions = Actions.None;
   facultyCurators: Curator[] = [];
   curatorForProfile: Curator;
