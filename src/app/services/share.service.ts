@@ -3,6 +3,7 @@ import {User} from "../classes/user";
 import {Curator} from "../classes/curator";
 import {Event} from "../classes/event";
 import {Feedback} from "../classes/feedback";
+import {ElderCurator} from "../classes/elder-curator";
 
 @Injectable()
 export class ShareService {
@@ -10,6 +11,7 @@ export class ShareService {
   newUser: User;
   currentUser: User;
   currentCurator: Curator;
+  currentElder: ElderCurator;
 
   public addFeedbackEvent: EventEmitter<Event> = new EventEmitter();
   public saveFeedbackEvent: EventEmitter<Feedback> = new EventEmitter();

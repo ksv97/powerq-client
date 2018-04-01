@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
+import {ShareService} from "../../services/share.service";
 
 @Component({
   selector: 'app-elder-curator',
@@ -8,7 +9,11 @@ import {Router} from "@angular/router";
 })
 export class ElderCuratorComponent implements OnInit {
 
-  constructor(private router: Router) { }
+
+  public isCollapsed = true;
+
+  constructor(private router: Router, public shareService: ShareService) {
+  }
 
   ngOnInit() {
   }

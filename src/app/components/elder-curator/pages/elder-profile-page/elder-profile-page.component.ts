@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ElderCurator} from "../../../../classes/elder-curator";
+import {ShareService} from "../../../../services/share.service";
 
 @Component({
   selector: 'app-elder-profile-page',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ElderProfilePageComponent implements OnInit {
 
-  constructor() { }
+  elder: ElderCurator;
+
+  constructor(private shareService: ShareService) {
+    this.elder = this.shareService.currentElder;
+  }
 
   ngOnInit() {
   }

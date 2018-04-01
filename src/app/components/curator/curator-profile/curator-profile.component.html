@@ -1,7 +1,7 @@
 
     <div class="card">
       <div class="card-header">
-        <h5>Профиль пользователя {{shareService.currentUser.firstName + ' ' + shareService.currentUser.surName}}</h5>
+        <h5>Профиль пользователя {{curator.user.firstName + ' ' + curator.user.surName}}</h5>
       </div>
       <div class="card-body" >
         <div class="row">
@@ -14,7 +14,7 @@
             <p class="font-weight-bold">Факультет:</p>
           </div>
           <div class="col-lg-6 col-sm-6">
-            <p>{{shareService.currentCurator.faculty.name}}</p>
+            <p>{{curator.faculty.name}}</p>
           </div>
         </div>
 
@@ -23,7 +23,7 @@
             <p class="font-weight-bold">Курируемые группы:</p>
           </div>
           <div class="col-lg-6 col-sm-6">
-            <p>{{shareService.currentCurator.curatedGroups}}</p>
+            <p>{{curator.curatedGroups}}</p>
           </div>
         </div>
 
@@ -38,7 +38,7 @@
             <p class="font-weight-bold">Личный:</p>
           </div>
           <div class="col-lg-6 col-sm-6">
-            <p>{{shareService.currentCurator.mark}}</p>
+            <p>{{curator.mark}}</p>
           </div>
         </div>
 
@@ -47,33 +47,33 @@
             <p class="font-weight-bold">Факультетский:</p>
           </div>
           <div class="col-lg-6 col-sm-6">
-            <p>{{shareService.currentCurator.faculty.mark}}</p>
+            <p>{{curator.faculty.mark}}</p>
           </div>
         </div>
 
-        <div class="row">
-          <div class="col">
-            <h5 class="text-center">Отчеты</h5>
-          </div>
-        </div>
+        <!--<div class="row">-->
+          <!--<div class="col">-->
+            <!--<h5 class="text-center">Отчеты</h5>-->
+          <!--</div>-->
+        <!--</div>-->
 
-        <div class="row">
-          <div class="col-lg-6 col-sm-6">
-            <p class="font-weight-bold">Всего написано:</p>
-          </div>
-          <div class="col-lg-6 col-sm-6">
-            <p>3</p>
-          </div>
-        </div>
+        <!--<div class="row">-->
+          <!--<div class="col-lg-6 col-sm-6">-->
+            <!--<p class="font-weight-bold">Всего написано:</p>-->
+          <!--</div>-->
+          <!--<div class="col-lg-6 col-sm-6">-->
+            <!--<p>3</p>-->
+          <!--</div>-->
+        <!--</div>-->
 
-        <div class="row">
-          <div class="col-lg-6 col-sm-6">
-            <p class="font-weight-bold">Из них задержано:</p>
-          </div>
-          <div class="col-lg-6 col-sm-6">
-            <p>0</p>
-          </div>
-        </div>
+        <!--<div class="row">-->
+          <!--<div class="col-lg-6 col-sm-6">-->
+            <!--<p class="font-weight-bold">Из них задержано:</p>-->
+          <!--</div>-->
+          <!--<div class="col-lg-6 col-sm-6">-->
+            <!--<p>0</p>-->
+          <!--</div>-->
+        <!--</div>-->
 
       </div>
 

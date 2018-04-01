@@ -43,7 +43,12 @@ export class AuthComponent implements OnInit {
               break;
             }
             case 'Старший куратор': {
-              this.router.navigate(['/elder']);
+              this.http.getElderCurator(existingUser.id).subscribe(
+                existingElder => {
+                  this.shareService.currentElder = existingElder;
+                  this.router.navigate(['/elder']);
+                }
+              );
               break;
             }
           }

@@ -1,7 +1,7 @@
 
     <div class="card">
       <div class="card-header">
-        <h5>Профиль пользователя Косов Родион</h5>
+        <h5>Профиль пользователя {{elder.user.firstName  + ' ' + elder.user.surName}}</h5>
       </div>
       <div class="card-body" >
         <div class="row">
@@ -9,7 +9,7 @@
             <p class="font-weight-bold">Факультет:</p>
           </div>
           <div class="col-lg-6 col-sm-6">
-            <p>ИВТФ</p>
+            <p>{{elder.faculty.name}}</p>
           </div>
         </div>
 
@@ -18,7 +18,7 @@
             <p class="font-weight-bold">Рейтинг факультета:</p>
           </div>
           <div class="col-lg-6 col-sm-6">
-            <p>25</p>
+            <p>{{elder.faculty.mark}}</p>
           </div>
         </div>
 

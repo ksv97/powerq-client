@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Curator} from "../../../../classes/curator";
+import {ShareService} from "../../../../services/share.service";
 
 @Component({
   selector: 'app-curator-profile-page',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CuratorProfilePageComponent implements OnInit {
 
-  constructor() { }
+  curator: Curator;
+
+  constructor(private shareService: ShareService) {
+    this.curator = this.shareService.currentCurator;
+  }
 
   ngOnInit() {
   }

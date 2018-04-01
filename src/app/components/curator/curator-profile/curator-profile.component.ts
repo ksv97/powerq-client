@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {ShareService} from "../../../services/share.service";
 import {Curator} from "../../../classes/curator";
 import {HttpService} from "../../../services/http.service";
@@ -9,13 +9,15 @@ import {HttpService} from "../../../services/http.service";
   styleUrls: ['curator-profile.component.css']
 })
 export class CuratorProfileComponent implements OnInit {
-  constructor(public shareService: ShareService, private http: HttpService) {
+
+  @Input() curator: Curator;
+
+  constructor(public shareService: ShareService) {
 
   }
 
   ngOnInit() {
-    // console.log('onInit curatorProfile');
-    // console.log(this.shareService.currentUser);
+
   }
 
 }

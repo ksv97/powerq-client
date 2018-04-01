@@ -180,6 +180,17 @@ export class HttpService {
 
   }
 
+  getElderCurator(userId: number): Observable<ElderCurator> {
+    let url = this.baseUrl + `users/elder?userId=${userId}`;
+
+    // dont have map operator
+    return this.http.get<ElderCurator>(url)
+      .pipe(
+        catchError(this.handleError<ElderCurator>('getElderCurator',null))
+      );
+
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
