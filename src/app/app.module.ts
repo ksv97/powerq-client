@@ -25,7 +25,6 @@ import { MyFeedbacksComponent } from './components/curator/pages/my-feedbacks/my
 import { EditFeedbackComponent } from './components/edit-feedback/edit-feedback.component';
 import { AllFeedbacksComponent } from './components/all-feedbacks/all-feedbacks.component';
 import { ElderProfileComponent } from './components/elder-curator/elder-profile/elder-profile.component';
-import { FacultyProfileComponent } from './components/elder-curator/pages/faculty-profile/faculty-profile.component';
 import { FacultyCuratorsComponent } from './components/elder-curator/pages/faculty-curators/faculty-curators.component';
 import { CuratorProfilePageComponent } from './components/curator/pages/curator-profile-page/curator-profile-page.component';
 import { ElderProfilePageComponent } from './components/elder-curator/pages/elder-profile-page/elder-profile-page.component';
@@ -55,6 +54,9 @@ import { RegisterCuratorComponent } from './components/register-curator/register
 import { ShareService } from './services/share.service';
 import { EditEventComponent } from './components/edit-event/edit-event.component';
 import { RegisterElderComponent } from './components/register-elder/register-elder.component';
+import {FacultyProfileComponent} from "./components/faculty-profile/faculty-profile.component";
+import { FacultyProfilePageComponent } from './components/elder-curator/pages/faculty-profile-page/faculty-profile-page.component';
+
 
 
 @NgModule({
@@ -100,6 +102,7 @@ import { RegisterElderComponent } from './components/register-elder/register-eld
     RegisterCuratorComponent,
     EditEventComponent,
     RegisterElderComponent,
+    FacultyProfilePageComponent,
   ],
   imports: [
     BrowserModule,
