@@ -36,8 +36,8 @@
               <button class="btn btn-outline-primary" [attr.id]="curator.id + 'actions'" ngbDropdownToggle>Действия</button>
               <div ngbDropdownMenu [attr.aria-labelledby]="curator.id + 'actions'">
                 <button class="dropdown-item" (click)="watchProfile(curator)">Посмотреть профиль</button>
-                <button class="dropdown-item">Посмотреть расписание</button>
-                <button class="dropdown-item">Посмотреть дедлайны</button>
+                <button class="dropdown-item" (click)="watchCuratorSchedule(curator)">Посмотреть расписание</button>
+                <button class="dropdown-item" (click)="watchCuratorDeadlines(curator)">Посмотреть дедлайны</button>
                 <hr>
                 <button class="dropdown-item" (click)="addDeadlineToCurator(curator)">Поставить дедлайн</button>
                 <button class="dropdown-item" (click)="addEventToCurator(curator)">Добавить мероприятие</button>
@@ -57,6 +57,9 @@
     </div>
     <div *ngIf="activeAction == actions.AddEvent || activeAction == actions.AddDeadline">
       <app-add-event [isDeadline]="newEventIsDeadline" [users]="usersAssignedToEvent" (onEventSaved)="saveEvent()" (onEventCanceled)="cancelEvent()"></app-add-event>
+    </div>
+    <div *ngIf="activeAction == actions.ShowCuratorSchedule">
+      <app-schedule [events]="curatorSchedule"></app-schedule>
     </div>
   </div>
 </div>

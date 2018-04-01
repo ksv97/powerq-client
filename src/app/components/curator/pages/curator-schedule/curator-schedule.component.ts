@@ -14,7 +14,7 @@ import {Actions} from "../../../../enums/Actions";
 })
 export class CuratorScheduleComponent implements OnInit {
 
-  public actions: Actions = Actions;
+  public actions: any = Actions;
   currentAction: Actions = Actions.None;
   usersForEvent: User[] = [];
   eventForFeedback: Event;

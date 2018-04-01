@@ -14,6 +14,7 @@ export class FacultyCuratorsComponent implements OnInit {
 
   newEventIsDeadline: boolean = false;
   usersAssignedToEvent: User[] = [];
+  curatorSchedule: Event[] = [];
   public actions = Actions;
   activeAction: Actions = Actions.None;
   facultyCurators: Curator[] = [];
@@ -58,6 +59,20 @@ export class FacultyCuratorsComponent implements OnInit {
 
   saveEvent() {
     this.activeAction = Actions.None;
+  }
+
+  watchCuratorSchedule(curator: Curator) {
+    this.http.getUserEvents(curator.user.id).subscribe(
+      events => this.curatorSchedule = events
+    );
+    this.activeAction = Actions.ShowCuratorSchedule;
+  }
+
+  watchCuratorDeadlines(curator: Curator) {
+    this.http.getUserDeadlines(curator.user.id).subscribe(
+      events => this.curatorSchedule = events
+    );
+    this.activeAction = Actions.ShowCuratorSchedule;
   }
 
 }

@@ -47,7 +47,7 @@
     </div>
     <div class="card-footer">
       <div *ngIf="!event.isDeadline" class="row">
-        <div class="col-lg-4 col-md-4">
+        <div class="col-lg-4 col-md-4" *ngIf="shareService.currentUser.role.name == 'Куратор'">
           <button class="btn btn-outline-primary" (click)="addFeedback()">Добавить отчет</button>
         </div>
         <div *ngIf="event.author.id == shareService.currentUser.id" class="col-lg-4 col-md-4">
