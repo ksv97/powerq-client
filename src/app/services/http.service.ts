@@ -72,6 +72,14 @@ export class HttpService {
       );
   }
 
+  getFacultyFeedbacks(facultyId: number): Observable<Feedback[]> {
+    let url = this.baseUrl + `feedback/faculty?facultyId=${facultyId}`;
+    return this.http.get<Feedback[]>(url)
+      .pipe(
+        catchError(this.handleError<Feedback[]>('getFacultyFeedbacks', []))
+      );
+  }
+
   getUserEvents(userId: number): Observable<Event[]> {
     let url = this.baseUrl + `events?userId=${userId}`;
 
@@ -112,11 +120,6 @@ export class HttpService {
       .pipe(
         catchError(this.handleError('getFeedbackForms',[]))
       )
-  }
-
-  getDeadlines (userId:number) {
-    let url = this.baseUrl + `events/deadlines?userId=${userId}`;
-    return this.http.get(url);
   }
 
   getRoles (): Observable<Role[]> {
@@ -194,8 +197,16 @@ export class HttpService {
     let url = this.baseUrl + `users/curators?facultyId=${facultyId}`;
     return this.http.get<Curator[]>(url, this.httpOptions)
       .pipe(
-        catchError(this.handleError<Curator[]>('getCurator',[]))
+        catchError(this.handleError<Curator[]>('getCuratorsFromFaculty',[]))
       );
+  }
+
+  getEventsForFaculty(facultyId: number): Observable<Event[]> {
+    let url = this.baseUrl + `events/forfaculty?facultyId=${facultyId}`;
+    return this.http.get<Event[]>(url)
+      .pipe(
+        catchError(this.handleError<Event[]>('getEventsForFaculty', []))
+      )
   }
 
   /**

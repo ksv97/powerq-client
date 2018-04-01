@@ -80,4 +80,10 @@ export class CuratorScheduleComponent implements OnInit {
     this.currentAction = Actions.None;
   }
 
+  addEvent () {
+    this.usersForEvent = [];
+    this.usersForEvent.push(this.shareService.currentUser);
+    this.currentAction = Actions.AddEvent;
+  }
+
 }

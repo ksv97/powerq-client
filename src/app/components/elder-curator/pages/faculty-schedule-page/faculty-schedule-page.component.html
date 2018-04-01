@@ -16,40 +16,43 @@
     <div class="row">
       <div class="col-lg-4 col-md-4">
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-          <label class="form-check-label" for="gridRadios1">
+          <input class="form-check-input" type="checkbox" id="checkBoxFacSch1"
+                 (change)="scheduleForAllCurators = !scheduleForAllCurators"
+                 [checked]="scheduleForAllCurators">
+          <label class="form-check-label" for="checkBoxFacSch1">
             Все кураторы
           </label>
         </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-          <label class="form-check-label" for="gridRadios2">
-            Некоторые кураторы
-          </label>
-        </div>
+        <!--<div class="form-check">-->
+          <!--<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">-->
+          <!--<label class="form-check-label" for="gridRadios2">-->
+            <!--Куратор-->
+          <!--</label>-->
+        <!--</div>-->
       </div>
 
-      <div class="col-lg-8 col-md-8">
+      <div class="col-lg-8 col-md-8" >
+        <div *ngIf="!scheduleForAllCurators">
+          <label for="selectCurator">Выберите куратора</label>
+          <select [(ngModel)]="selectedCurator" (change)="loadScheduleForCurator()" id="selectCurator" class="form-control">
+            <option *ngFor="let curator of facultyCurators" [ngValue]="curator">
+              {{curator.user.firstName + ' ' + curator.user.surName}}
+            </option>
 
-        <select class="custom-select" multiple>
-          <option>Максим Андреев</option>
-          <option>Антон Максимов</option>
-          <option>Антон Максимов</option>
-          <option>Антон Максимов</option>
-          <option>Антон Максимов</option>
-          <option>Антон Максимов</option>
-          <option>Антон Максимов</option>
-          <option>Антон Максимов</option>
-        </select>
+          </select>
+        </div>
+
       </div>
     </div>
     <div class="mt-2">
-      <app-schedule></app-schedule>
+      <app-schedule [events]="scheduleForWatch"></app-schedule>
     </div>
 
   </div>
   <div class="col-lg-6 col-md-12">
-    <app-add-event></app-add-event>
+    <div *ngIf="currentAction == actions.AddEvent">
+      <app-add-event [users]="usersAssignedToEvent" [isDeadline]="false"></app-add-event>
+    </div>
   </div>
 </div>
 

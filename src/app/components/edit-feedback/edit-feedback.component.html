@@ -112,7 +112,7 @@
           Оценка:
         </div>
         <div class="col-lg-8 col-sm-6">
-          <ngb-rating [(rate)]="editedFeedback.mark" [readonly]="readonly || shareService.currentUser.id == editedFeedback.author.id"></ngb-rating>
+          <ngb-rating [(rate)]="editedFeedback.mark"  [readonly]="shareService.currentUser.id == editedFeedback.author.id || shareService.currentUser.role.name == 'Куратор'"></ngb-rating>
         </div>
       </div>
 
