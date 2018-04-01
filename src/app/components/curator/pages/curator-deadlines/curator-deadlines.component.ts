@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpService} from "../../../../services/http.service";
+import {ShareService} from "../../../../services/share.service";
+import {MessageService} from "../../../../services/message.service";
+import {Event} from "../../../../classes/event"
 
 @Component({
   selector: 'app-curator-deadlines',
@@ -7,12 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CuratorDeadlinesComponent implements OnInit {
 
-  public isCollapsed1 = true;
-  public isCollapsed2 = true;
+  curatorDeadlines: Event[] = [];
 
-  constructor() { }
+  constructor(private http: HttpService, public shareService: ShareService,
+              private messageService: MessageService) { }
 
   ngOnInit() {
+    this.http.getUserDeadlines(this.shareService.currentUser.id)
+      .subscribe(
+        result => this.curatorDeadlines = result
+      )
   }
 
 }

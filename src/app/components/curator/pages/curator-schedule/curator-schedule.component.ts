@@ -24,7 +24,6 @@ export class CuratorScheduleComponent implements OnInit {
   private editEventSubscription: Subscription;
   private confirmEditEventSubscription: Subscription;
   private cancelEditEventSubscription: Subscription;
-  // private deleteEventSubscription: Subscription;
 
   constructor(private http: HttpService, public shareService: ShareService,
               private messageService: MessageService) {
@@ -48,28 +47,16 @@ export class CuratorScheduleComponent implements OnInit {
     });
 
     this.confirmEditEventSubscription = this.shareService.confirmEditEvent.subscribe( editedEvent => {
-      // let indexOfOldEvent = this.curatorEvents.indexOf(editedEvent.id);
-      // this.curatorEvents[indexOfOldEvent] = editedEvent;
       this.isEditingEvent = false;
     });
 
     this.cancelEditEventSubscription = this.shareService.cancelEditEvent.subscribe(
       res => this.isEditingEvent = false
     );
-
-    // this.deleteEventSubscription = this.shareService.deleteEventEvent.subscribe(deletedEventId => {
-    //   let eventToDelete: Event = this.curatorEvents.filter(i => i.id == deletedEventId)[0];
-    //   if (eventToDelete) {
-    //     let indexToDelete: number = this.curatorEvents.indexOf(eventToDelete);
-    //     if (indexToDelete > -1) {
-    //       this.curatorEvents.splice(indexToDelete, 1);
-    //     }
-    //   }
-    // })
   }
 
   ngOnInit() {
-    this.http.getEvents(this.shareService.currentUser.id).subscribe(
+    this.http.getUserEvents(this.shareService.currentUser.id).subscribe(
       events =>
       {
         this.curatorEvents = events;
@@ -82,6 +69,7 @@ export class CuratorScheduleComponent implements OnInit {
     this.addFeedbackSubscription.unsubscribe();
     this.editEventSubscription.unsubscribe();
     this.confirmEditEventSubscription.unsubscribe();
+    this.cancelEditEventSubscription.unsubscribe();
   }
 
   saveEvent(newEvent: Event) {

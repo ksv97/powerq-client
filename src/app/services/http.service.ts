@@ -72,12 +72,21 @@ export class HttpService {
       );
   }
 
-  getEvents(userId: number): Observable<Event[]> {
+  getUserEvents(userId: number): Observable<Event[]> {
     let url = this.baseUrl + `events?userId=${userId}`;
 
     return this.http.get<Event[]>(url, this.httpOptions)
       .pipe(
-        catchError(this.handleError<Event[]>('getEvents', []))
+        catchError(this.handleError<Event[]>('getUserEvents', []))
+      );
+  }
+
+  getUserDeadlines(userId: number): Observable<Event[]> {
+    let url = this.baseUrl + `events/deadlines?userId=${userId}`;
+
+    return this.http.get<Event[]>(url, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<Event[]>('getUserDeadlines', []))
       );
   }
 
