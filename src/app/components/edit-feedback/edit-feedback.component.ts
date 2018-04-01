@@ -6,6 +6,7 @@ import {FeedbackAnswer} from "../../classes/feedback-answer";
 import {HttpService} from "../../services/http.service";
 import {ShareService} from "../../services/share.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {MessageService} from "../../services/message.service";
 
 @Component({
   selector: 'app-edit-feedback',
@@ -21,7 +22,7 @@ export class EditFeedbackComponent implements OnInit {
   feedbackAnswerForm: FeedbackAnswerForm; // for editing
 
   constructor(private http: HttpService, public shareService: ShareService,
-              private modalService: NgbModal) {
+              private modalService: NgbModal, private messageService: MessageService) {
   }
 
   ngOnInit() {
@@ -60,4 +61,11 @@ export class EditFeedbackComponent implements OnInit {
     this.modalService.open(content);
   }
 
+  addMark() {
+    this.http.addMark(this.editedFeedback).subscribe(
+      result => {
+        this.messageService.add('Оценка обновлена')
+      }
+    )
+  }
 }

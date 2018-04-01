@@ -131,10 +131,18 @@ export class HttpService {
   }
 
   getFaculties(): Observable<Faculty[]> {
-    let url = this.baseUrl + 'faculties';
+    let url = this.baseUrl + 'faculties/all';
     return this.http.get<Faculty[]>(url)
       .pipe(
         catchError(this.handleError('getFaculties',[]))
+      );
+  }
+
+  getFaculty(facultyId: number): Observable<Faculty> {
+    let url = this.baseUrl + `faculties?facultyId=${facultyId}`;
+    return this.http.get<Faculty>(url)
+      .pipe(
+        catchError(this.handleError<Faculty>('getFaculty',null))
       );
   }
 
@@ -207,6 +215,13 @@ export class HttpService {
       .pipe(
         catchError(this.handleError<Event[]>('getEventsForFaculty', []))
       )
+  }
+
+  addMark(feedback: Feedback): Observable<any> {
+    let url = this.baseUrl + 'marks/add';
+    return this.http.post(url, JSON.stringify(feedback), this.httpOptions).pipe(
+      catchError (this.handleError('addMark',null))
+    )
   }
 
   /**
