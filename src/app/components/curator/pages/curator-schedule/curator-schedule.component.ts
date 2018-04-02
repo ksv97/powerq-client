@@ -60,8 +60,7 @@ export class CuratorScheduleComponent implements OnInit {
 
   ngOnInit() {
     this.http.getUserEvents(this.shareService.currentUser.id).subscribe(
-      events =>
-      {
+      events => {
         this.curatorEvents = events;
       }
     )
