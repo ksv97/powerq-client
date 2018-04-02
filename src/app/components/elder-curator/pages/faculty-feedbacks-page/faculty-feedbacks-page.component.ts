@@ -15,9 +15,10 @@ export class FacultyFeedbacksPageComponent implements OnInit {
   public actions = Actions;
   currentAction: Actions = Actions.None;
   feedbacks: Feedback[];
-  showFeedbackSubscription: Subscription;
-  hideFeedbackSubsciption: Subscription;
   feedbackToShow: Feedback;
+
+  private showFeedbackSubscription: Subscription;
+  private cancelEditingFeedbackSubsciption: Subscription;
 
   constructor(private http: HttpService, private shareService: ShareService) {
     this.showFeedbackSubscription = this.shareService.showFeedbackEvent.subscribe(
@@ -26,6 +27,10 @@ export class FacultyFeedbacksPageComponent implements OnInit {
         this.currentAction = Actions.EditFeedback;
       }
     );
+
+    this.cancelEditingFeedbackSubsciption = this.shareService.cancelEditFeedbackEvent.subscribe(res => {
+      this.currentAction = Actions.None
+    })
   }
 
   ngOnInit() {
@@ -37,6 +42,7 @@ export class FacultyFeedbacksPageComponent implements OnInit {
 
   ngOnDestroy() {
     this.showFeedbackSubscription.unsubscribe();
+    this.cancelEditingFeedbackSubsciption.unsubscribe();
   }
 
 }

@@ -7,6 +7,7 @@ import {HttpService} from "../../services/http.service";
 import {ShareService} from "../../services/share.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {MessageService} from "../../services/message.service";
+import {Faculty} from "../../classes/faculty";
 
 @Component({
   selector: 'app-edit-feedback',
@@ -18,8 +19,7 @@ export class EditFeedbackComponent implements OnInit {
   @Input() feedbackToEdit: Feedback;
   @Input() readonly: boolean;
   private editedFeedback: Feedback;
-
-  feedbackAnswerForm: FeedbackAnswerForm; // for editing
+  facultyOfAuthor: Faculty;
 
   constructor(private http: HttpService, public shareService: ShareService,
               private modalService: NgbModal, private messageService: MessageService) {
@@ -39,6 +39,9 @@ export class EditFeedbackComponent implements OnInit {
     this.editedFeedback.dateOfWriting = new Date(feedback.dateOfWriting);
     this.editedFeedback.event.date = new Date(feedback.event.date);
     this.editedFeedback.mark = feedback.mark;
+    this.http.getFacultyOfUser(this.editedFeedback.author.id).subscribe(
+      fac => this.facultyOfAuthor = fac
+    )
   }
 
   toggleEditor() {
@@ -67,5 +70,9 @@ export class EditFeedbackComponent implements OnInit {
         this.messageService.add('Оценка обновлена')
       }
     )
+  }
+
+  cancelEditing() {
+    this.shareService.cancelEditFeedbackEvent.emit(true);
   }
 }

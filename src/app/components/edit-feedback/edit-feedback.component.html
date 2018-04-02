@@ -36,7 +36,7 @@
           </div>
         </div>
         <div class="col-lg-1">
-          <button type="button" class="close" aria-label="Close">
+          <button type="button" class="close" aria-label="Close" (click)="cancelEditing()">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -112,7 +112,11 @@
           Оценка:
         </div>
         <div class="col-lg-8 col-sm-6">
-          <ngb-rating [(rate)]="editedFeedback.mark" (rateChange)="addMark()" [readonly]="shareService.currentUser.id == editedFeedback.author.id || shareService.currentUser.role.name == 'Куратор'"></ngb-rating>
+          <ngb-rating [(rate)]="editedFeedback.mark" (rateChange)="addMark()"
+                      [readonly]="shareService.currentUser.id == editedFeedback.author.id
+                      || shareService.currentUser.role.name == 'Куратор'
+                      || (shareService.currentElder && shareService.currentElder.faculty.id != facultyOfAuthor.id)">
+          </ngb-rating>
         </div>
       </div>
 
@@ -122,7 +126,7 @@
     <div class="card-footer">
       <div *ngIf="!readonly">
         <button class="btn btn-success" (click)="updateFeedback()">Сохранить</button>
-        <button class="btn btn-danger">Отмена</button>
+        <button class="btn btn-danger" (click)="cancelEditing()">Отмена</button>
       </div>
     </div>
   </div>

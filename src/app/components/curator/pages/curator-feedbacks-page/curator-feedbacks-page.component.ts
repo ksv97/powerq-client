@@ -20,6 +20,7 @@ export class CuratorFeedbacksPageComponent implements OnInit {
   private showFeedbackSubscription: Subscription;
   private updateFeedbackSubscription: Subscription;
   private deleteFeedbackSubscription: Subscription;
+  private cancelEditingFeedbackSubscription: Subscription;
 
   constructor(public shareService: ShareService, private http: HttpService,
               private messageService: MessageService) {
@@ -30,6 +31,10 @@ export class CuratorFeedbacksPageComponent implements OnInit {
       this.feedbackToEdit = feedback;
       this.isEditingFeedback = true;
       this.readonlyFeedback = true;
+    });
+
+    this.cancelEditingFeedbackSubscription = this.shareService.cancelEditFeedbackEvent.subscribe(res => {
+      this.isEditingFeedback = false;
     });
 
     this.updateFeedbackSubscription = this.shareService.updateFeedbackEvent
@@ -81,6 +86,7 @@ export class CuratorFeedbacksPageComponent implements OnInit {
     this.showFeedbackSubscription.unsubscribe();
     this.deleteFeedbackSubscription.unsubscribe();
     this.updateFeedbackSubscription.unsubscribe();
+    this.cancelEditingFeedbackSubscription.unsubscribe();
   }
 
 }

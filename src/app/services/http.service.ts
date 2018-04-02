@@ -146,6 +146,14 @@ export class HttpService {
       );
   }
 
+  getFacultyOfUser(userId: number): Observable<Faculty> {
+    let url = this.baseUrl + `faculties/userfaculty?userId=${userId}`;
+    return this.http.get<Faculty>(url)
+      .pipe(
+        catchError(this.handleError<Faculty>('getFacultyOfUser',null))
+      );
+  }
+
   checkLoginOfUser (user: User) : Observable<boolean> {
     let url = this.baseUrl +'users/check';
     console.log(user);
