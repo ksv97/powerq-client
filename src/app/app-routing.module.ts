@@ -55,6 +55,7 @@ const routes: Routes = [
     {path: 'all-feedbacks', component: ElderFeedbacksPageComponent}
   ]},
   {path: 'admin', component: NavbarComponent, children: [
+    {path: '', redirectTo: 'schedule', pathMatch: 'full'},
     {path: 'users', component: UsersPageComponent},
     {path: 'schedule', component: AdminSchedulePageComponent},
     {path: 'deadlines', component: AdminDeadlinesPageComponent},

@@ -98,6 +98,24 @@ export class HttpService {
       );
   }
 
+  getAllEvents() : Observable<Event[]> {
+    let url = this.baseUrl + `events/all`;
+
+    return this.http.get<Event[]>(url)
+      .pipe(
+        catchError(this.handleError<Event[]>('getAllEvents', []))
+      );
+  }
+
+  getAllDeadlines() : Observable<Event[]> {
+    let url = this.baseUrl + `events/deadlines/all`;
+
+    return this.http.get<Event[]>(url)
+      .pipe(
+        catchError(this.handleError<Event[]>('getAllDeadlines', []))
+      );
+  }
+
   updateEvent (event: Event): Observable<any> {
     let url = this.baseUrl + `events/update`;
     return this.http.post<any>(url, JSON.stringify(event), this.httpOptions)
