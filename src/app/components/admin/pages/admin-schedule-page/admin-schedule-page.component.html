@@ -39,10 +39,6 @@
         <select *ngIf="option == 2 && faculties.length > 0" [(ngModel)]="selectedFaculty" (change)="changeFaculty()" class="form-control">
           <option disabled>Выберите факультет...</option>
           <option  *ngFor="let fac of faculties" [ngValue]="fac">{{fac.name}}</option>
-          <!--<option>ИВТФ</option>-->
-          <!--<option>ИВТФ</option>-->
-          <!--<option>ИВТФ</option>-->
-          <!--<option>ИВТФ</option>-->
         </select>
       </div>
     </div>

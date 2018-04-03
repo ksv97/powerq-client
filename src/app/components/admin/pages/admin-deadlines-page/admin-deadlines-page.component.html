@@ -2,9 +2,14 @@
   <div class="col-lg-6 col-md-12">
     <div class="row">
       <div class="col-lg-4 col-md-6">
-        <button class="btn btn-outline-info" type="button">
-          Добавить дедлайн
-        </button>
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-primary" id="new-event-dropdown" ngbDropdownToggle>Добавить дедлайн</button>
+          <div ngbDropdownMenu aria-labelledby="new-event-dropdown">
+            <button class="dropdown-item" (click)="addEventToAllUsers()">Всем пользователям</button>
+            <button class="dropdown-item" (click)="addEventsToAllCurators()">Всем кураторам</button>
+            <button class="dropdown-item" (click)="addEventToAllElders()">Всем старшим кураторам</button>
+          </div>
+        </div>
       </div>
       <div class="col-lg-8 col-md-6">
         <div class="form-group">
@@ -16,13 +21,13 @@
     <div class="row">
       <div class="col-lg-4 col-md-4">
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+          <input class="form-check-input" type="radio" id="gridRadios1" [value]="1" [(ngModel)]="option">
           <label class="form-check-label" for="gridRadios1">
             Все дедлайны
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+          <input class="form-check-input" type="radio" [value]="2" [(ngModel)]="option" id="gridRadios2">
           <label class="form-check-label" for="gridRadios2">
             Дедлайны факультета
           </label>
@@ -31,23 +36,29 @@
 
       <div class="col-lg-8 col-md-8">
 
-        <select class="custom-select">
-          <option>ИВТФ</option>
-          <option>ИВТФ</option>
-          <option>ИВТФ</option>
-          <option>ИВТФ</option>
-          <option>ИВТФ</option>
+        <select *ngIf="option == 2 && faculties.length > 0" [(ngModel)]="selectedFaculty" (change)="changeFaculty()" class="form-control">
+          <option disabled>Выберите факультет...</option>
+          <option  *ngFor="let fac of faculties" [ngValue]="fac">{{fac.name}}</option>
         </select>
 
       </div>
     </div>
     <div class="mt-2">
-      <app-deadlines></app-deadlines>
+      <div *ngIf="eventsToShow && eventsToShow.length > 0; else elseBlock">
+        <app-schedule [events]="eventsToShow"></app-schedule>
+      </div>
+      <ng-template #elseBlock>
+        <div>Дедлайнов не найдено</div>
+      </ng-template>
     </div>
 
   </div>
   <div class="col-lg-6 col-md-12">
-    <app-add-deadline></app-add-deadline>
+    <div *ngIf="currentAction == actions.AddEvent">
+      <app-add-event [isDeadline]="true" [users]="usersForEvent"
+                     (onEventSaved)="currentAction = actions.None"
+                     (onEventCanceled)="currentAction = actions.None"></app-add-event>
+    </div>
   </div>
 </div>
 

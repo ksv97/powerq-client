@@ -243,6 +243,14 @@ export class HttpService {
       )
   }
 
+  getDeadlinesForFaculty(facultyId: number): Observable<Event[]> {
+    let url = this.baseUrl + `events/deadlinesforfaculty?facultyId=${facultyId}`;
+    return this.http.get<Event[]>(url)
+      .pipe(
+        catchError(this.handleError<Event[]>('getDeadlinesForFaculty', []))
+      )
+  }
+
   addMark(feedback: Feedback): Observable<any> {
     let url = this.baseUrl + 'marks/add';
     return this.http.post(url, JSON.stringify(feedback), this.httpOptions).pipe(
