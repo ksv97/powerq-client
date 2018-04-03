@@ -40,6 +40,10 @@ export class AdminSchedulePageComponent implements OnInit {
 
   ngOnInit() {
     this.getAllEvents();
+
+    this.http.getFaculties().subscribe(
+      result => this.faculties = result
+    )
   }
 
   getAllEvents() {
@@ -47,9 +51,6 @@ export class AdminSchedulePageComponent implements OnInit {
       result => this.eventsToShow = result
     );
 
-    this.http.getFaculties().subscribe(
-      result => this.faculties = result
-    )
   }
 
   getFacultyEvents() {

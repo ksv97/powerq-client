@@ -27,6 +27,7 @@ import {RegistrationComponent} from "./components/registration/registration.comp
 import  {RegisterCuratorComponent} from "./components/register-curator/register-curator.component"
 import {RegisterElderComponent} from "./components/register-elder/register-elder.component";
 import {FacultyProfilePageComponent} from "./components/elder-curator/pages/faculty-profile-page/faculty-profile-page.component";
+import {AdminFeedbacksPageComponent} from "./components/admin/pages/admin-feedbacks-page/admin-feedbacks-page.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/auth', pathMatch: 'full' },
@@ -59,6 +60,7 @@ const routes: Routes = [
     {path: 'users', component: UsersPageComponent},
     {path: 'schedule', component: AdminSchedulePageComponent},
     {path: 'deadlines', component: AdminDeadlinesPageComponent},
+    {path: 'feedbacks', component: AdminFeedbacksPageComponent},
     {path: 'faculties', component: FacultyListPageComponent},
     {path: 'feedback-forms', component: FeedbackFormsPageComponent},
   ]}

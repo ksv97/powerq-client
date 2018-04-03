@@ -56,6 +56,7 @@ import { EditEventComponent } from './components/edit-event/edit-event.component
 import { RegisterElderComponent } from './components/register-elder/register-elder.component';
 import {FacultyProfileComponent} from "./components/faculty-profile/faculty-profile.component";
 import { FacultyProfilePageComponent } from './components/elder-curator/pages/faculty-profile-page/faculty-profile-page.component';
+import { AdminFeedbacksPageComponent } from './components/admin/pages/admin-feedbacks-page/admin-feedbacks-page.component';
 
 
 
@@ -103,6 +104,7 @@ import { FacultyProfilePageComponent } from './components/elder-curator/pages/fa
     EditEventComponent,
     RegisterElderComponent,
     FacultyProfilePageComponent,
+    AdminFeedbacksPageComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-lg-6 col-md-12">
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+        <div class="form-group">
+          <input class="form-control" type="text" placeholder="Поиск">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4 col-md-4">
+        <div class="form-check">
+          <input class="form-check-input" type="radio"  id="gridRadios1" [value]="1" [(ngModel)]="option" >
+          <label class="form-check-label" for="gridRadios1">
+            Все отчеты
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" id="gridRadios2" [value]="2" [(ngModel)]="option">
+          <label class="form-check-label" for="gridRadios2">
+            Отчеты факультета
+          </label>
+        </div>
+      </div>
+
+      <div class="col-lg-8 col-md-8">
+
+        <select *ngIf="option == 2 && faculties.length > 0" [(ngModel)]="selectedFaculty" (change)="changeFaculty()" class="form-control">
+          <option disabled>Выберите факультет...</option>
+          <option  *ngFor="let fac of faculties" [ngValue]="fac">{{fac.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="mt-2">
+      <div *ngIf="feedbacks && feedbacks.length > 0; else elseBlock">
+        <app-all-feedbacks [feedbacks]="feedbacks"></app-all-feedbacks>
+      </div>
+      <ng-template #elseBlock>
+        <div>Отчетов не найдено</div>
+      </ng-template>
+    </div>
+
+  </div>
+  <div class="col-lg-6 col-md-12">
+    <div *ngIf="currentAction == actions.EditFeedback">
+      <app-edit-feedback [feedbackToEdit]="feedbackToEdit" [readonly]="true"></app-edit-feedback>
+    </div>
+  </div>
+</div>
+

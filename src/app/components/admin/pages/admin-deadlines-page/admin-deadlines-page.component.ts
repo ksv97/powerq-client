@@ -4,6 +4,7 @@ import {Faculty} from "../../../../classes/faculty";
 import {User} from "../../../../classes/user";
 import {HttpService} from "../../../../services/http.service";
 import {ShareService} from "../../../../services/share.service";
+import {Event} from '../../../../classes/event'
 
 @Component({
   selector: 'app-admin-deadlines-page',
@@ -39,16 +40,16 @@ export class AdminDeadlinesPageComponent implements OnInit {
 
   ngOnInit() {
     this.getAllEvents();
+
+    this.http.getFaculties().subscribe(
+      result => this.faculties = result
+    )
   }
 
   getAllEvents() {
     this.http.getAllDeadlines().subscribe(
       result => this.eventsToShow = result
     );
-
-    this.http.getFaculties().subscribe(
-      result => this.faculties = result
-    )
   }
 
   getFacultyEvents() {
