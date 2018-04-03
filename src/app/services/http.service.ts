@@ -250,6 +250,30 @@ export class HttpService {
     )
   }
 
+  getAllUsers(): Observable<User[]> {
+    let url = this.baseUrl + 'users/all';
+
+    return this.http.get<User[]>(url).pipe(
+      catchError(this.handleError<User[]>('getAllUsers',[]))
+    )
+  }
+
+  getCuratorUsers(): Observable<User[]> {
+    let url = this.baseUrl + 'users/curatorusers';
+
+    return this.http.get<User[]>(url).pipe(
+      catchError(this.handleError<User[]>('getCuratorUsers',[]))
+    )
+  }
+
+  getElderUsers(): Observable<User[]> {
+    let url = this.baseUrl + 'users/elderusers';
+
+    return this.http.get<User[]>(url).pipe(
+      catchError(this.handleError<User[]>('getElderUsers',[]))
+    )
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.

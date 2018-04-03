@@ -4,6 +4,7 @@ import {Event} from '../../../../classes/event'
 import {HttpService} from "../../../../services/http.service";
 import {ShareService} from "../../../../services/share.service";
 import {Faculty} from "../../../../classes/faculty";
+import {User} from "../../../../classes/user";
 
 @Component({
   selector: 'app-admin-schedule-page',
@@ -18,6 +19,7 @@ export class AdminSchedulePageComponent implements OnInit {
   faculties: Faculty[] = [];
   selectedFaculty: Faculty;
   private selectedOption: number = 1; // 1 - all, 2 - faculty
+  usersForEvent: User[] = [];
 
   set option (value: number) {
     if (value == 1) {
@@ -60,6 +62,33 @@ export class AdminSchedulePageComponent implements OnInit {
     if (this.selectedFaculty) {
       this.getFacultyEvents();
     }
+  }
+
+  addEventToAllUsers() {
+    this.http.getAllUsers().subscribe(
+      result => {
+        this.usersForEvent = result;
+        this.currentAction = Actions.AddEvent;
+      }
+    )
+  }
+
+  addEventsToAllCurators() {
+    this.http.getCuratorUsers().subscribe(
+      result => {
+        this.usersForEvent = result;
+        this.currentAction = Actions.AddEvent;
+      }
+    )
+  }
+
+  addEventToAllElders() {
+    this.http.getElderUsers().subscribe(
+      result => {
+        this.usersForEvent = result;
+        this.currentAction = Actions.AddEvent;
+      }
+    )
   }
 
 }

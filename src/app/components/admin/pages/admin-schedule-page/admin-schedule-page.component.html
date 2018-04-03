@@ -2,9 +2,14 @@
   <div class="col-lg-6 col-md-12">
     <div class="row">
       <div class="col-lg-4 col-md-6">
-        <button class="btn btn-outline-info" type="button">
-          Добавить мероприятие
-        </button>
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-primary" id="new-event-dropdown" ngbDropdownToggle>Добавить мероприятие</button>
+          <div ngbDropdownMenu aria-labelledby="new-event-dropdown">
+            <button class="dropdown-item" (click)="addEventToAllUsers()">Всем пользователям</button>
+            <button class="dropdown-item" (click)="addEventsToAllCurators()">Всем кураторам</button>
+            <button class="dropdown-item" (click)="addEventToAllElders()">Всем старшим кураторам</button>
+          </div>
+        </div>
       </div>
       <div class="col-lg-8 col-md-6">
         <div class="form-group">
@@ -32,7 +37,7 @@
       <div class="col-lg-8 col-md-8">
 
         <select *ngIf="option == 2 && faculties.length > 0" [(ngModel)]="selectedFaculty" (change)="changeFaculty()" class="form-control">
-          <option>Выберите факультет...</option>
+          <option disabled>Выберите факультет...</option>
           <option  *ngFor="let fac of faculties" [ngValue]="fac">{{fac.name}}</option>
           <!--<option>ИВТФ</option>-->
           <!--<option>ИВТФ</option>-->
@@ -42,13 +47,20 @@
       </div>
     </div>
     <div class="mt-2">
-      <app-schedule [events]="eventsToShow"></app-schedule>
+      <div *ngIf="eventsToShow && eventsToShow.length > 0; else elseBlock">
+        <app-schedule [events]="eventsToShow"></app-schedule>
+      </div>
+      <ng-template #elseBlock>
+        <div>Мероприятий не найдено</div>
+      </ng-template>
     </div>
 
   </div>
   <div class="col-lg-6 col-md-12">
     <div *ngIf="currentAction == actions.AddEvent">
-      <app-add-event></app-add-event>
+      <app-add-event [isDeadline]="false" [users]="usersForEvent"
+                     (onEventSaved)="currentAction = actions.None"
+                     (onEventCanceled)="currentAction = actions.None"></app-add-event>
     </div>
   </div>
 </div>
