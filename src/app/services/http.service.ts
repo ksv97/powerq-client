@@ -52,6 +52,14 @@ export class HttpService {
       );
   }
 
+  deleteUser (id: number): Observable<any> {
+    let url = this.baseUrl + 'users/delete';
+    return this.http.post<any>(url, JSON.stringify(id), this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('deleteUser', null))
+      );
+  }
+
   createEvent (event: Event): Observable<any> {
     let url = this.baseUrl + 'events/create';
     return this.http.post<any>(url, JSON.stringify(event), this.httpOptions)
