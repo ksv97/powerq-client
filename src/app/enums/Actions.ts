@@ -8,7 +8,8 @@ export enum Actions {
   EditFeedback,
   AddFeedback,
   AddDeadline,
-  EditDeadline,
+  AddFeedbackForm,
+  EditFeedbackForm,
   ShowProfile,
   ShowCuratorSchedule,
 }

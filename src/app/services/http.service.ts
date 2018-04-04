@@ -28,6 +28,30 @@ export class HttpService {
   constructor(private http: HttpClient, private messageService: MessageService) {
   }
 
+  createFeedbackForm(feedbackForm: FeedbackForm): Observable<any>{
+    let url = this.baseUrl + 'feedbackforms/create';
+    return this.http.post<any>(url, JSON.stringify(feedbackForm), this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('createFeedbackForm', null))
+      );
+  }
+
+  updateFeedbackForm(feedbackForm: FeedbackForm): Observable<any>{
+    let url = this.baseUrl + 'feedbackforms/update';
+    return this.http.post<any>(url, JSON.stringify(feedbackForm), this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('updateFeedbackForm', null))
+      );
+  }
+
+  deleteFeedbackForm(id: number): Observable<any>{
+    let url = this.baseUrl + 'feedbackforms/delete';
+    return this.http.post<any>(url, JSON.stringify(id), this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('deleteFeedbackForm', null))
+      );
+  }
+
   createEvent (event: Event): Observable<any> {
     let url = this.baseUrl + 'events/create';
     return this.http.post<any>(url, JSON.stringify(event), this.httpOptions)
@@ -276,11 +300,12 @@ export class HttpService {
 
   getElderUsers(): Observable<User[]> {
     let url = this.baseUrl + 'users/elderusers';
-
     return this.http.get<User[]>(url).pipe(
       catchError(this.handleError<User[]>('getElderUsers',[]))
     )
   }
+
+
 
   /**
    * Handle Http operation that failed.
