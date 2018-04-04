@@ -1,0 +1,65 @@
+<div>
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-lg-11">
+          <h5>{{formToEdit.name}}</h5>
+        </div>
+        <div class="col-lg-1">
+          <button type="button" class="close" aria-label="Close" (click)="cancelEditing()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body" >
+      <div class="form-group row">
+        <label for="inputName" class="col-lg-3 col-sm-6 col-form-label">
+          Название:
+        </label>
+        <div class="col-lg-8 col-sm-6">
+          <input [(ngModel)]="formToEdit.name"  id="inputName" placeholder="Название" type="text" class="form-control">
+        </div>
+
+      </div>
+
+      <div class="row mt-2">
+        <div class="col text-center">
+          <h5>Список вопросов</h5>
+        </div>
+      </div>
+
+      <div class="form-group row" *ngFor="let feedbackQuestion of formToEdit.questions; let i = index">
+        <label [attr.for]="'inputName' + i" class="col-lg-3 col-sm-6 col-form-label">
+          Текст вопроса №{{i + 1}}
+        </label>
+        <div class="col-lg-7 col-sm-6">
+          <textarea [attr.id]="'inputName' + i" [readonly]="readonly" rows="2" [(ngModel)]="feedbackQuestion.name" placeholder="Введите текст вопроса" type="text" class="form-control">
+          </textarea>
+        </div>
+        <div class="col-lg-2">
+          <button type="button" class="btn btn-danger" (click)="removeQuestion(feedbackQuestion)">
+            <fa [name]="'trash'" [size]="1"></fa>
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button type="button" class="btn btn-outline-info" (click)="addQuestion()">Добавить вопрос</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card-footer">
+      <div>
+        <button class="btn btn-success" (click)="saveFeedbackForm()">Сохранить</button>
+        <button class="btn btn-danger" (click)="cancelEditing()">Отмена</button>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

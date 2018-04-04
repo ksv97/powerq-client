@@ -16,6 +16,8 @@ export class FeedbackFormsPageComponent implements OnInit {
   public actions = Actions;
   currentAction: Actions = Actions.None;
   feedbackForms: FeedbackForm[];
+  private formForEditing: FeedbackForm;
+  private idOfFormToDelete: number;
 
   constructor(private  http: HttpService, private modalService: NgbModal, private messageService: MessageService) { }
 
@@ -25,7 +27,8 @@ export class FeedbackFormsPageComponent implements OnInit {
     )
   }
 
-  openModal(content) {
+  openModal(content, id: number) {
+    this.idOfFormToDelete = id;
     this.modalService.open(content);
   }
 
@@ -40,9 +43,41 @@ export class FeedbackFormsPageComponent implements OnInit {
     )
   }
 
+  editForm(form: FeedbackForm) {
+    this.formForEditing = form;
+    this.currentAction = Actions.EditFeedbackForm;
+  }
+
+  updateFeedbackForm(form: FeedbackForm) {
+    this.http.updateFeedbackForm(form).subscribe(
+      result => {
+
+        let oldForm = this.feedbackForms.filter(i => i.id == form.id)[0];
+        if (oldForm) {
+          let indexOfOldForm = this.feedbackForms.indexOf(oldForm);
+          if (indexOfOldForm > -1) {
+            this.feedbackForms[indexOfOldForm] = form;
+            this.currentAction = Actions.None;
+            this.messageService.add("Форма отчета успешно обновлена!");
+          }
+        }
+      }
+    )
+  }
 
   deleteFeedbackForm() {
-
+    this.http.deleteFeedbackForm(this.idOfFormToDelete).subscribe(
+      result => {
+        let oldForm = this.feedbackForms.filter(i => i.id == this.idOfFormToDelete)[0];
+        if (oldForm) {
+          let indexOfOldForm = this.feedbackForms.indexOf(oldForm);
+          if (indexOfOldForm > -1) {
+            this.feedbackForms.splice(indexOfOldForm, 1);
+            this.messageService.add("Форма отчета упешно удалена!");
+          }
+        }
+      }
+    )
   }
 
 }

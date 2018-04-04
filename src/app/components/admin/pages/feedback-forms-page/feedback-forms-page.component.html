@@ -41,10 +41,10 @@
           <td>{{feedbackForm.name}}</td>
           <td>
             <div class="btn-group">
-              <button class="btn btn-warning">
+              <button class="btn btn-warning" (click)="editForm(feedbackForm)">
                 <fa [name]="'edit'" [size]="1"></fa>
               </button>
-              <button type="button" class="btn btn-danger" (click)="openModal(content)">
+              <button type="button" class="btn btn-danger" (click)="openModal(content, feedbackForm.id)">
                 <fa [name]="'trash'" [size]="1"></fa>
               </button>
             </div>
@@ -60,6 +60,11 @@
       <app-add-feedback-form (onFormCanceled)="currentAction = actions.None"
                              (onFormSaved)="createFeedbackForm($event)">
       </app-add-feedback-form>
+    </div>
+    <div *ngIf="currentAction == actions.EditFeedbackForm">
+      <app-edit-feedback-form [inputForm]="formForEditing"
+                              (onCancelChanges)="currentAction = actions.None"
+                              (onSaveChanges)="updateFeedbackForm($event)"></app-edit-feedback-form>
     </div>
 
   </div>
