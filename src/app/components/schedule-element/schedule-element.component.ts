@@ -14,10 +14,17 @@ import {MessageService} from "../../services/message.service";
 export class ScheduleElementComponent implements OnInit {
 
   @Input() event: Event;
+  isOverdued: boolean = false;
 
   constructor(public  shareService: ShareService, private modalService: NgbModal) { }
 
   ngOnInit() {
+    let eventDate = new Date(this.event.date);
+    let nowDate = new Date();
+
+    if (eventDate < nowDate) {
+      this.isOverdued = true;
+    }
   }
 
   addFeedback() {

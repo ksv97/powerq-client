@@ -14,7 +14,8 @@
     </div>
 
     <div class="mt-2">
-      <app-deadlines [deadlines]="elderDeadlines"></app-deadlines>
+      <app-schedule [events]="elderDeadlines"></app-schedule>
+      <div *ngIf="elderDeadlines.length < 1">У вас нет активных дедлайнов.</div>
     </div>
 
   </div>
