@@ -31,7 +31,7 @@ export class RegisterElderComponent implements OnInit {
   registerElder () {
     this.http.registerElder(this.elder).subscribe(
       result => {
-        this.messageService.add(`Elder register result: ${result}`);
+        this.messageService.add(`Регистрация прошла успешно!`);
         this.router.navigate(['/auth']);
       }
     )

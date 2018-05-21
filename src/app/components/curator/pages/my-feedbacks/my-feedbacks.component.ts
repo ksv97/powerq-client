@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {Feedback} from "../../../../classes/feedback";
+import {Subscription} from "rxjs";
+import {ShareService} from "../../../../services/share.service";
+import {HttpService} from "../../../../services/http.service";
+import {MessageService} from "../../../../services/message.service";
 
 @Component({
   selector: 'app-my-feedbacks',
@@ -7,9 +12,80 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyFeedbacksComponent implements OnInit {
 
-  constructor() { }
+  myFeedbacks: Feedback[];
+  feedbackToEdit: Feedback;
+  isEditingFeedback: boolean;
+  readonlyFeedback: boolean;
 
-  ngOnInit() {
+  private showFeedbackSubscription: Subscription;
+  private updateFeedbackSubscription: Subscription;
+  private deleteFeedbackSubscription: Subscription;
+  private cancelEditingFeedbackSubscription: Subscription;
+
+  constructor(public shareService: ShareService, private http: HttpService,
+              private messageService: MessageService) {
+    this.myFeedbacks = [];
+    this.readonlyFeedback = false;
+
+    this.showFeedbackSubscription = this.shareService.showFeedbackEvent.subscribe(feedback => {
+      this.feedbackToEdit = feedback;
+      this.isEditingFeedback = true;
+      this.readonlyFeedback = true;
+    });
+
+    this.cancelEditingFeedbackSubscription = this.shareService.cancelEditFeedbackEvent.subscribe(res => {
+      this.isEditingFeedback = false;
+    });
+
+    this.updateFeedbackSubscription = this.shareService.updateFeedbackEvent
+      .subscribe(updatedFeedback => {
+        this.http.updateFeedback(updatedFeedback).subscribe(
+          _ => {
+            this.isEditingFeedback = false;
+            this.readonlyFeedback = false;
+            this.messageService.add('Отчет успешно обновлен!');
+          }
+        )
+      });
+
+    this.deleteFeedbackSubscription = this.shareService.deleteFeedbackEvent.subscribe(
+      dataForFeedbackDeletion => {
+        this.http.deleteFeedback(dataForFeedbackDeletion.eventId, dataForFeedbackDeletion.userId).subscribe(
+          result => {
+            let feedbackToDelete: Feedback = this.myFeedbacks
+              .filter(e => e.author.id == dataForFeedbackDeletion.userId
+              && e.event.id == dataForFeedbackDeletion.eventId)[0];
+            if (feedbackToDelete) {
+              let index: number = this.myFeedbacks.indexOf(feedbackToDelete);
+              if (index > -1) {
+                this.myFeedbacks.splice(index, 1);
+                this.messageService.add('Отчет успешно удален!');
+                this.isEditingFeedback = false;
+                this.readonlyFeedback = false;
+              }
+            }
+          }
+        )
+      }
+    )
   }
 
+  ngOnInit() {
+    this.http.getUserFeedbacks(this.shareService.currentUser.id).subscribe(
+      feedbacksFromDb => {
+        for (let fbFromDb of feedbacksFromDb) {
+          let feedback = fbFromDb;
+          feedback.dateOfWriting = new Date(fbFromDb.dateOfWriting);
+          this.myFeedbacks.push(feedback);
+        }
+      }
+    )
+  }
+
+  ngOnDestroy () {
+    this.showFeedbackSubscription.unsubscribe();
+    this.deleteFeedbackSubscription.unsubscribe();
+    this.updateFeedbackSubscription.unsubscribe();
+    this.cancelEditingFeedbackSubscription.unsubscribe();
+  }
 }

@@ -31,7 +31,6 @@ export class RegistrationComponent implements OnInit {
   checkLoginOfUser () {
     this.http.checkLoginOfUser(this.user).subscribe(
       result => {
-        this.messageService.add('Login check: ' + result);
         if (result == true) {
           this.share.newUser = this.user;
           switch (this.user.role.name) {

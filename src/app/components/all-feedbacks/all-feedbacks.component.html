@@ -1,31 +1,38 @@
-<table class="table table-hover">
-  <thead class="thead-light">
-  <tr>
-    <th scope="col">Автор</th>
-    <th scope="col">Форма отчета</th>
-    <th scope="col">Дата написания</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr class="clickable" *ngFor="let feedback of feedbacks" (click)="showFeedbackDetails(feedback)">
-    <td>{{feedback.author.firstName + ' ' +  feedback.author.surName}}</td>
-    <td>{{feedback.feedbackAnswerForm.name}}</td>
-    <td>{{feedback.dateOfWriting | date:'mediumDate':'':'ru'}}</td>
-  </tr>
-  <!--<tr>-->
+<div *ngIf="feedbacks.length">
+  <table class="table table-hover">
+    <thead class="thead-light">
+    <tr>
+      <th scope="col">Автор</th>
+      <th scope="col">Форма отчета</th>
+      <th scope="col">Дата написания</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="clickable" *ngFor="let feedback of feedbacks" (click)="showFeedbackDetails(feedback)">
+      <td>{{feedback.author.firstName + ' ' +  feedback.author.surName}}</td>
+      <td>{{feedback.feedbackAnswerForm.name}}</td>
+      <td>{{feedback.dateOfWriting | date:'mediumDate':'':'ru'}}</td>
+    </tr>
+    <!--<tr>-->
     <!--<td>Антонов Максим</td>-->
     <!--<td>Отчет о КЧ №1</td>-->
     <!--<td>27.05.18</td>-->
-  <!--</tr>-->
-  <!--<tr>-->
+    <!--</tr>-->
+    <!--<tr>-->
     <!--<td>Сергеев Андрей</td>-->
     <!--<td>Отчет о прошедшем мероприятии</td>-->
     <!--<td>6.06.18</td>-->
-  <!--</tr>-->
-  <!--<tr>-->
+    <!--</tr>-->
+    <!--<tr>-->
     <!--<td>Косов Родион</td>-->
     <!--<td>Отчет о прошедшем мероприятии</td>-->
     <!--<td>8.06.18</td>-->
-  <!--</tr>-->
-  </tbody>
-</table>
+    <!--</tr>-->
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="!feedbacks.length">
+  Отчетов не найдено
+</div>
+

@@ -31,7 +31,7 @@ export class RegisterCuratorComponent implements OnInit {
   registerCurator () {
     this.http.registerCurator(this.curator).subscribe(
       result => {
-        this.messageService.add(`Curator register result: ${result}`);
+        this.messageService.add(`Регистрация прошла успешно!`);
         this.router.navigate(['/auth']);
       }
     )

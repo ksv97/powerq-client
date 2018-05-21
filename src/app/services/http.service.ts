@@ -112,6 +112,14 @@ export class HttpService {
       );
   }
 
+  getUserFeedbacks(userId: number): Observable<Feedback[]> {
+    let url = this.baseUrl + `feedback?userId=${userId}`;
+    return this.http.get<Feedback[]>(url)
+      .pipe(
+        catchError(this.handleError<Feedback[]>('getUserFeedbacks', []))
+      );
+  }
+
   getUserEvents(userId: number): Observable<Event[]> {
     let url = this.baseUrl + `events?userId=${userId}`;
 

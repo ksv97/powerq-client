@@ -1,23 +1,20 @@
 <div class="row px-2">
   <div class="col-lg-6 col-md-12">
     <div class="row">
-      <div class="col-lg-4 col-md-4">
-        <button class="btn btn-outline-secondary" type="button">
-          Добавить отчет
-        </button>
-      </div>
-      <div class="col-lg-8 col-md-8">
+      <div class="col-lg-12 col-md-12">
         <div class="form-group">
           <input class="form-control" type="text" placeholder="Поиск">
         </div>
       </div>
     </div>
     <div class="mt-2">
-      <app-all-feedbacks></app-all-feedbacks>
+      <app-all-feedbacks [feedbacks]="myFeedbacks"></app-all-feedbacks>
     </div>
   </div>
   <div class="col-lg-6 col-md-12">
-    <app-edit-feedback></app-edit-feedback>
+    <div *ngIf="isEditingFeedback">
+      <app-edit-feedback [feedbackToEdit]="feedbackToEdit" [readonly]="readonlyFeedback"></app-edit-feedback>
+    </div>
   </div>
 
 </div>
